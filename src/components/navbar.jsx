@@ -9,7 +9,14 @@ const Navbar = props => {
     <div className="navbar">
       <Logo></Logo>
       {props.user.username !== "" ? <div>Hi, {props.user.username}</div> : ""}
-      <button className="outline-btn" onClick={login}>
+      <button
+        className="outline-btn"
+        onClick={() => {
+          window.open(
+            "https://discordapp.com/api/oauth2/authorize?client_id=687765988636229689&redirect_uri=https%3A%2F%2Fastrobot.netlify.com%2Fauth&response_type=code&scope=identify%20email"
+          );
+        }}
+      >
         Login
       </button>
     </div>
