@@ -1,25 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import logo from "./logo.svg";
+import "./styles/style.css";
+import { Router, Route, Switch, useLocation } from "react-router-dom";
+import history from "./routing/history";
+import Navbar from "./components/navbar";
+import Dashboard from "./components/dashboard/dashboard";
+import CallToAction from "./components/callToAction";
+import Commands from "./components/commands";
+import Auth from "./components/auth";
+import { Provider } from "react-redux";
+import store from "./store/store";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <Navbar></Navbar>
+        <div className="content">
+          <CallToAction></CallToAction>
+          <Dashboard></Dashboard>
+          <Commands></Commands>
+          <Router history={history}>
+            <Switch>
+              <Route exact path="/auth" component={Auth} />
+            </Switch>
+          </Router>
+        </div>
+      </div>
+    </Provider>
   );
 }
 
