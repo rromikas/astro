@@ -10,6 +10,7 @@ import Commands from "./components/commands";
 import Auth from "./components/auth";
 import { Provider } from "react-redux";
 import store from "./store/store";
+import Animation from "./animations/animation";
 
 function App() {
   return (
@@ -17,9 +18,13 @@ function App() {
       <div className="App">
         <Navbar></Navbar>
         <div className="content">
-          <CallToAction></CallToAction>
-          <Dashboard></Dashboard>
+          <div>
+            <CallToAction></CallToAction>
+            <Dashboard></Dashboard>
+          </div>
           <Commands></Commands>
+          <Animation></Animation>
+
           <Router history={history}>
             <Switch>
               <Route exact path="/auth" component={Auth} />

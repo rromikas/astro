@@ -83,9 +83,20 @@ body {
   max-width: 1500px;
   margin: auto;
   padding: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .content section {
-  margin-bottom: 100px;
+  margin: 0px 30px 70px 30px;
+}
+
+.content > section {
+  margin-bottom: 0;
 }
 /*# sourceMappingURL=style.css.map */
