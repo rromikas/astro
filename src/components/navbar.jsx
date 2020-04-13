@@ -6,11 +6,26 @@ const Navbar = (props) => {
   const dispatch = useDispatch();
   console.log("Navbar atejo props", props);
   return (
-    <div className="navbar">
+    <div className="navbar concave-1 p-5 justify-content-between align-items-center">
       <Logo></Logo>
       {props.user.username !== "" ? <div>Hi, {props.user.username}</div> : ""}
-      <button
-        className="outline-btn"
+      <div
+        className="convex-1 p-3"
+        style={{ fontFamily: "League Spartan" }}
+        onClick={() => {
+          window.open(
+            "https://discordapp.com/oauth2/authorize?client_id=683749582705786882&scope=bot&permissions=2146958591"
+          );
+        }}
+      >
+        CONNECT NOW
+      </div>
+      <div className="convex-1 p-3" style={{ fontFamily: "League Spartan" }}>
+        COMMANDS
+      </div>
+      <div
+        className="convex-1 p-3"
+        style={{ fontFamily: "League Spartan" }}
         onClick={() => {
           if (props.user.username !== "") {
             dispatch({
@@ -29,8 +44,8 @@ const Navbar = (props) => {
           }
         }}
       >
-        {props.user.username !== "" ? "Logout" : "Login"}
-      </button>
+        {props.user.username !== "" ? "LOGOUT" : "LOGIN"}
+      </div>
     </div>
   );
 };

@@ -4,7 +4,7 @@ const Guide = ({ name, callback = () => {}, status }) => {
   return (
     <section>
       <div
-        className="convex-1 p-5 mb-2 newish"
+        className="p-5 mb-2 newish convex-1"
         style={{
           cursor: "pointer",
           fontSize: "30px",
@@ -13,7 +13,14 @@ const Guide = ({ name, callback = () => {}, status }) => {
         }}
         onClick={callback}
       >
-        {name}
+        <div className="p-5 convex-1">
+          <div
+            className="p-5 concave-1"
+            style={{ fontFamily: "League Spartan" }}
+          >
+            {name}
+          </div>
+        </div>
       </div>
       {status ? (
         <p

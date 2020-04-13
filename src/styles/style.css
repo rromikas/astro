@@ -1,3 +1,21 @@
+div::-webkit-scrollbar {
+  width: 1rem;
+}
+
+div::-webkit-scrollbar-track {
+  background: transparent;
+  -webkit-box-shadow: inset 2px 2px 6px 0 rgba(0, 0, 0, 0.2), inset -3px -3px 5px 0 rgba(255, 255, 255, 0.34);
+          box-shadow: inset 2px 2px 6px 0 rgba(0, 0, 0, 0.2), inset -3px -3px 5px 0 rgba(255, 255, 255, 0.34);
+  border-radius: 0.5rem;
+}
+
+div::-webkit-scrollbar-thumb {
+  border-radius: 0.5rem;
+  background: #a5fafb;
+  -webkit-box-shadow: 3px 4px 6px rgba(0, 0, 0, 0.24), -2px -2px 6px rgba(255, 255, 255, 0.35);
+          box-shadow: 3px 4px 6px rgba(0, 0, 0, 0.24), -2px -2px 6px rgba(255, 255, 255, 0.35);
+}
+
 html,
 body,
 #root {
@@ -5,26 +23,17 @@ body,
   height: 100%;
   padding: 0;
   margin: 0;
-  background: radial-gradient(circle at left, #1fc274, #0026dd);
   font-family: poppins;
+  font-weight: 300;
   color: white;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #5651b7;
 }
 
-.navbar {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  height: 75px;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  padding: 0 20px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+html,
+body {
+  background-color: #1d1041 !important;
 }
 
 .outline-btn {
@@ -74,7 +83,7 @@ body,
 }
 
 .logo {
-  font-family: poppins;
+  font-family: League Spartan;
   font-weight: 700;
   font-size: 30px;
   color: white;
@@ -128,8 +137,8 @@ body,
 }
 
 .convex-1 {
-  -webkit-box-shadow: 12px 12px 16px 0 rgba(0, 0, 0, 0.25), -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
-          box-shadow: 12px 12px 16px 0 rgba(0, 0, 0, 0.25), -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
+  -webkit-box-shadow: 2px 12px 16px 0 rgba(0, 0, 0, 0.25), -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
+          box-shadow: 2px 12px 16px 0 rgba(0, 0, 0, 0.25), -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
 }
 
 .concave-1 {
@@ -175,20 +184,20 @@ body,
   user-drag: none;
 }
 
-.newish {
+.shn {
   background: linear-gradient(135deg, rgba(2, 0, 36, 0) 4%, rgba(40, 31, 187, 0) 28%, white 48%, rgba(8, 32, 136, 0) 71%, rgba(0, 212, 255, 0) 100%);
-  background-size: 300% 300%;
+  background-size: 200% 200%;
   background-repeat: no-repeat;
   background-position: 200% 200%;
   -webkit-transition: background-position 1s;
   transition: background-position 1s;
 }
 
-.newish:hover {
+.shn:hover {
   -webkit-transition: background-position 1s;
   transition: background-position 1s;
-  -webkit-animation: shine 1.5s linear;
-          animation: shine 1.5s linear;
+  -webkit-animation: shine 1s linear;
+          animation: shine 1s linear;
 }
 
 @-webkit-keyframes shine {
@@ -1033,5 +1042,13 @@ body,
 
 .w-100 {
   width: 100% !important;
+}
+
+.enbl-btn {
+  background: #a5fafb;
+}
+
+.dsbl-btn {
+  background: #fba5cd;
 }
 /*# sourceMappingURL=style.css.map */

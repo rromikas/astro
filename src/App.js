@@ -8,13 +8,14 @@ import { Provider } from "react-redux";
 import store from "./store/store";
 import Dashboard from "./components/dashboard/dashboard";
 import Landing from "./components/landing/landing";
+import Corner from "./images/corner";
 function App() {
   return (
     <Provider store={store}>
       <Navbar></Navbar>
       <Router history={history}>
         <Switch>
-          <Route exact path="/" component={Landing} />
+          <Route exact path="/" component={Dashboard} />
           <Route exact path="/auth" component={Auth} />
           <Route exact path="/dashboard" component={Dashboard} />
         </Switch>
