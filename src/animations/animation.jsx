@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { Spring, animated, config } from "react-spring/renderprops";
+import { Spring, animated } from "react-spring/renderprops";
 import paths from "./paths";
 import { interpolate } from "flubber";
 
 const Animation = () => {
   const [pinger, ping] = useState(1);
-  console.log(pinger);
   const interpolator = interpolate(
     paths["discord"],
     paths[`discord${pinger < 5 ? (pinger >= 3 ? "-right" : "-left") : ""}`]
@@ -17,7 +16,7 @@ const Animation = () => {
         reset
         native
         from={{
-          t: pinger % 2 === 0 ? 1 : 0
+          t: pinger % 2 === 0 ? 1 : 0,
         }}
         to={{ t: pinger % 2 === 0 ? 0 : 1 }}
         onRest={() => ping((pinger % 6) + 1)}

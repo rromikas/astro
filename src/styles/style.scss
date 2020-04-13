@@ -1,10 +1,11 @@
 html,
-body {
+body,
+#root {
   width: 100%;
   height: 100%;
   padding: 0;
   margin: 0;
-  background: url(), radial-gradient(circle at left, #1fc274, #0026dd);
+  background: radial-gradient(circle at left, #1fc274, #0026dd);
   font-family: poppins;
   color: white;
 }
@@ -77,3 +78,131 @@ body {
     margin-bottom: 0;
   }
 }
+
+.dshbrd-1 {
+  display: flex;
+  flex: 0 1 90%;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.pnl-ctn {
+  padding: 10px;
+}
+
+.convex-2 {
+  box-shadow: 3px 4px 6px rgba(0, 0, 0, 0.24),
+    -2px -2px 6px rgba(255, 255, 255, 0.35);
+}
+.concave-2 {
+  box-shadow: inset 2px 2px 6px 0 rgba(0, 0, 0, 0.2),
+    inset -3px -3px 5px 0 rgba(255, 255, 255, 0.34);
+}
+
+.convex-1 {
+  box-shadow: 12px 12px 16px 0 rgba(0, 0, 0, 0.25),
+    -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
+}
+.concave-1 {
+  box-shadow: inset 6px 6px 10px 0 rgba(0, 0, 0, 0.2),
+    inset -6px -6px 10px 0 rgba(255, 255, 255, 0.5);
+}
+
+.flx-row {
+  flex-direction: row;
+}
+
+.flx-clmn {
+  flex-direction: column;
+}
+
+.prfx-inpt {
+  background: transparent;
+  width: 100%;
+  outline: none;
+  border: none;
+  color: white;
+  text-align: center;
+}
+
+.selectDisable {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  touch-action: none;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
+
+.newish {
+  background: linear-gradient(
+    135deg,
+    rgba(2, 0, 36, 0) 4%,
+    rgba(40, 31, 187, 0) 28%,
+    rgba(255, 255, 255, 1) 48%,
+    rgba(8, 32, 136, 0) 71%,
+    rgba(0, 212, 255, 0) 100%
+  );
+  background-size: 300% 300%;
+  background-repeat: no-repeat;
+  background-position: 200% 200%;
+  transition: background-position 1s;
+}
+
+.newish:hover {
+  transition: background-position 1s;
+  animation: shine 1.5s linear;
+}
+
+@keyframes shine {
+  0% {
+    background-position: 200% 200%;
+  }
+
+  100% {
+    background-position: -200% -200%;
+  }
+}
+.pnl {
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+  display: flex;
+  font-weight: 200;
+}
+
+.concave-txt {
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.75),
+    -1px -1px 3px rgba(255, 255, 255, 0.75);
+}
+.convex-txt {
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.75),
+    -1px -1px 3px rgba(0, 0, 0, 0.75);
+}
+
+$heights: 100;
+@mixin h-list {
+  @for $i from 0 through $heights {
+    .h-#{$i} {
+      height: #{$i}% !important;
+    }
+  }
+}
+
+@include h-list;
+
+$widths: 100;
+@mixin w-list {
+  @for $i from 0 through $widths {
+    .w-#{$i} {
+      width: #{$i}% !important;
+    }
+  }
+}
+
+@include w-list;

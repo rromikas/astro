@@ -1,9 +1,8 @@
 import React from "react";
 import Logo from "./logo";
-import { login, getUser } from "../auth/auth";
 import { connect, useDispatch } from "react-redux";
 
-const Navbar = props => {
+const Navbar = (props) => {
   const dispatch = useDispatch();
   console.log("Navbar atejo props", props);
   return (
@@ -20,8 +19,8 @@ const Navbar = props => {
                 username: "",
                 email: "",
                 avatar: "",
-                id: ""
-              }
+                id: "",
+              },
             });
           } else {
             window.open(
@@ -38,7 +37,7 @@ const Navbar = props => {
 
 function mapStateToProps(state) {
   return {
-    user: state
+    user: state,
   };
 }
 
