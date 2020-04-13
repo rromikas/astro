@@ -7,8 +7,6 @@ import Auth from "./components/auth";
 import { Provider } from "react-redux";
 import store from "./store/store";
 import Dashboard from "./components/dashboard/dashboard";
-import Landing from "./components/landing/landing";
-import Corner from "./images/corner";
 function App() {
   return (
     <Provider store={store}>

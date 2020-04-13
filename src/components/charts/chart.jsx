@@ -9,7 +9,7 @@ const Chart = ({ data }) => {
         <div className="col-auto">
           {data.items.map((x, i) => {
             return (
-              <div className="" style={{ height: "37px" }}>
+              <div key={`charads-${i}`} style={{ height: "37px" }}>
                 <div className="w-100 justify-content-center d-flex">
                   {x.image ? (
                     <div style={{ width: "30px", height: "30px" }}>
@@ -30,7 +30,7 @@ const Chart = ({ data }) => {
         <div className="col">
           {data.items.map((x, i) => {
             return (
-              <div className={`d-flex`}>
+              <div className={`d-flex`} key={`fdsdfdsg-${i}`}>
                 <div
                   className={`w-${(i + 1) * 20} `}
                   style={{

@@ -1,7 +1,6 @@
 let start,
   move = [],
-  letMove = false,
-  timeout = null;
+  letMove = false;
 
 export const onMU = (e, chnl, setState) => {
   letMove = false;
