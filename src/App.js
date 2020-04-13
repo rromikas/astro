@@ -11,11 +11,10 @@ function App() {
   return (
     <Provider store={store}>
       <Navbar></Navbar>
+      <Dashboard></Dashboard>
       <Router history={history}>
         <Switch>
-          <Route exact path="/" component={Dashboard} />
           <Route exact path="/auth" component={Auth} />
-          <Route exact path="/dashboard" component={Dashboard} />
         </Switch>
       </Router>
     </Provider>
