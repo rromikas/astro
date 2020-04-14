@@ -7,7 +7,10 @@ import Auth from "./components/auth";
 import { Provider } from "react-redux";
 import store from "./store/store";
 import Dashboard from "./components/dashboard/dashboard";
+// eslint-disable-next-line import/no-webpack-loader-syntax
+import file from "!raw-loader!./index.js";
 function App() {
+  console.log(file);
   return (
     <Provider store={store}>
       <Navbar></Navbar>
