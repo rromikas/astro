@@ -30,7 +30,7 @@ const Navbar = (props) => {
                   );
                 }}
               >
-                CONNECT NOW
+                CONNECT
               </div>
             </div>
             <div className="col-auto pl-2">
