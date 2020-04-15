@@ -49,7 +49,7 @@ const Chart = ({ data }) => {
               </div>
             );
           })}
-          <div className="col" style={{ borderTop: "2px solid white" }}>
+          <div className="col px-0" style={{ borderTop: "2px solid white" }}>
             <div
               className={`w-${
                 data.items.length * 20
