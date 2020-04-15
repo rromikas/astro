@@ -31,6 +31,10 @@ body,
   scrollbar-color: #5651b7;
 }
 
+.crs-pntr {
+  cursor: pointer;
+}
+
 html,
 body {
   background: radial-gradient(circle at left, #1fc274, #0026dd);

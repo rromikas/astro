@@ -3,6 +3,8 @@ import Logo from "./logo";
 import { connect, useDispatch } from "react-redux";
 
 const Navbar = (props) => {
+  const menuClass =
+    "col-12 col-md-auto pln text-right text-md-center pl-3 crs-pntr";
   const dispatch = useDispatch();
   console.log("Navbar atejo props", props);
   return (
@@ -11,16 +13,16 @@ const Navbar = (props) => {
         <div className="col-auto pr-2 pb-2">
           <Logo></Logo>
         </div>
-        <div className="col-auto">
-          <div className="row no-gutters">
-            <div className="col-auto pln">
+        <div className="col">
+          <div className="row no-gutters justify-content-end">
+            <div className={menuClass}>
               {props.user.username !== "" ? (
                 <div>Hi, {props.user.username}</div>
               ) : (
                 ""
               )}
             </div>
-            <div className="col-auto pl-2">
+            <div className={menuClass}>
               <div
                 className="pln"
                 onClick={() => {
@@ -32,10 +34,10 @@ const Navbar = (props) => {
                 Connect
               </div>
             </div>
-            <div className="col-auto pl-2">
+            <div className={menuClass}>
               <div className="pln">Commands</div>
             </div>
-            <div className="col-auto pl-2">
+            <div className={menuClass}>
               <div
                 className="pln"
                 onClick={() => {
