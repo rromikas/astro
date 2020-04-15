@@ -6,14 +6,14 @@ const Navbar = (props) => {
   const dispatch = useDispatch();
   console.log("Navbar atejo props", props);
   return (
-    <div className="concave-1 container-fluid p-5 justify-content-between align-items-center">
-      <div className="row no-gutters">
-        <div className="col pr-2 pb-2">
+    <div className="container-fluid p-3 justify-content-between align-items-center">
+      <div className="row no-gutters justify-content-between">
+        <div className="col-auto pr-2 pb-2">
           <Logo></Logo>
         </div>
         <div className="col-auto">
           <div className="row no-gutters">
-            <div className="col-auto pl-2">
+            <div className="col-auto pln">
               {props.user.username !== "" ? (
                 <div>Hi, {props.user.username}</div>
               ) : (
@@ -22,29 +22,22 @@ const Navbar = (props) => {
             </div>
             <div className="col-auto pl-2">
               <div
-                className="convex-1 p-3"
-                style={{ fontFamily: "League Spartan" }}
+                className="pln"
                 onClick={() => {
                   window.open(
                     "https://discordapp.com/oauth2/authorize?client_id=683749582705786882&scope=bot&permissions=2146958591"
                   );
                 }}
               >
-                CONNECT
+                Connect
               </div>
             </div>
             <div className="col-auto pl-2">
-              <div
-                className="convex-1 p-3"
-                style={{ fontFamily: "League Spartan" }}
-              >
-                COMMANDS
-              </div>
+              <div className="pln">Commands</div>
             </div>
             <div className="col-auto pl-2">
               <div
-                className="convex-1 p-3"
-                style={{ fontFamily: "League Spartan" }}
+                className="pln"
                 onClick={() => {
                   if (props.user.username !== "") {
                     dispatch({
@@ -63,7 +56,7 @@ const Navbar = (props) => {
                   }
                 }}
               >
-                {props.user.username !== "" ? "LOGOUT" : "LOGIN"}
+                {props.user.username !== "" ? "Logout" : "Login"}
               </div>
             </div>
           </div>

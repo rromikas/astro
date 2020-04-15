@@ -33,7 +33,7 @@ body,
 
 html,
 body {
-  background-color: #1d1041 !important;
+  background: radial-gradient(circle at left, #1fc274, #0026dd);
 }
 
 .outline-btn {
