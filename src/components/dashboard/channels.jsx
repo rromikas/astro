@@ -14,7 +14,7 @@ const Channels = () => {
   const [move, setMove] = useState([0, 0]);
   return (
     <div
-      className="p-2 col-lg-4 col-md-8 col-sm-8 col-12"
+      className="p-2 col-lg-4 col-md-8 col-sm-8 col-12 col-xl"
       style={{ height: "300px" }}
     >
       <div className="pnl convex-1 row px-4 py-2 no-gutters justify-content-between shn h-100">

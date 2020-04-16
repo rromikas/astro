@@ -4,6 +4,7 @@ import Chart from "../charts/chart";
 import CommandsStatus from "./commands";
 import Channels from "./channels";
 import Prefix from "./prefix";
+import Table from "./table";
 const Dashboard = () => {
   const [prefix, setPrefix] = useState("!");
   return (
@@ -18,7 +19,7 @@ const Dashboard = () => {
       </div>
       <div className="row no-gutters">
         <div
-          className="col-12 col-md-6 pl-2 pr-3 pt-3"
+          className="col-12 col-md-6 pl-2 pr-3 py-3"
           style={{ height: "300px" }}
         >
           <div className="pnl convex-1 shn">
@@ -32,7 +33,7 @@ const Dashboard = () => {
           </div>
         </div>
         <div
-          className="col-12 col-md-6 pl-3 pr-2 pt-3"
+          className="col-12 col-md-6 pl-3 pr-2 py-3"
           style={{ height: "300px" }}
         >
           <div className="pnl convex-1 shn">
@@ -44,6 +45,11 @@ const Dashboard = () => {
               }}
             ></Chart>
           </div>
+        </div>
+      </div>
+      <div className="row no-gutters">
+        <div className="col-auto pl-2 p-3" style={{ height: "400px" }}>
+          <Table></Table>
         </div>
       </div>
     </div>

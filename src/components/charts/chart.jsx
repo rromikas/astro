@@ -20,7 +20,7 @@ const Chart = ({ data }) => {
                       ></img>
                     </div>
                   ) : (
-                    <div className="lead">{x.name}</div>
+                    <div>{x.name}</div>
                   )}
                 </div>
               </div>

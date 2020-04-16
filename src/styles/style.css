@@ -16,6 +16,10 @@ div::-webkit-scrollbar-thumb {
           box-shadow: 3px 4px 6px rgba(0, 0, 0, 0.24), -2px -2px 6px rgba(255, 255, 255, 0.35);
 }
 
+div::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
 html,
 body,
 #root {
@@ -173,7 +177,7 @@ body {
   text-align: center;
 }
 
-.selectDisable {
+.select-disable {
   -webkit-user-select: none;
   -moz-user-select: none;
   -o-user-select: none;
@@ -229,7 +233,6 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  font-weight: 200;
 }
 
 .concave-txt {
@@ -1054,5 +1057,23 @@ body {
 
 .dsbl-btn {
   background: #fba5cd;
+}
+
+.drdwn-menu {
+  color: black;
+  position: absolute;
+  z-index: 5;
+  background: white;
+  top: 80%;
+  max-height: 110px;
+  overflow-y: auto;
+}
+
+.drdwn-menu > div:hover {
+  background: #a5fafb;
+}
+
+.drdwn-menu > div {
+  padding: 5px 40px 5px 20px;
 }
 /*# sourceMappingURL=style.css.map */
