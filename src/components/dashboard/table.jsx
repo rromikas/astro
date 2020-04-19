@@ -21,14 +21,12 @@ const Table = () => {
       }}
     >
       <div className="container-fluid">
-        <div className="row no-gutters">
-          <div className="col-12 text-center lead mb-4">User Manager</div>
+        <div className="row no-gutters h-100">
+          <div className="col-12 text-center lead">User Manager</div>
           <div
-            className="col-12"
+            className="col-12 h-83"
             style={{
-              overflowX: "auto",
-              overflowY: "scroll",
-              height: "250px",
+              overflow: "auto",
             }}
           >
             <div

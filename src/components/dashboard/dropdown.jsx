@@ -4,7 +4,7 @@ const DropDown = ({ items, current, show, open, place }) => {
   const [curr, setCurr] = useState(current);
   return (
     <div
-      className="select-disable d-flex align-items-center"
+      className="d-flex align-items-center"
       style={{ position: "relative", height: "100%" }}
       onClick={open}
     >

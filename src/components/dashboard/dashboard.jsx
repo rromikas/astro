@@ -13,13 +13,28 @@ const Dashboard = () => {
       style={{ maxWidth: "1300px", minHeight: "100%" }}
     >
       <div className="row no-gutters justify-content-between">
-        <Channels></Channels>
-        <Prefix setPrefix={setPrefix} prefix={prefix}></Prefix>
-        <CommandsStatus prefix={prefix}></CommandsStatus>
+        <div
+          className="p-2 col-lg-4 col-md-8 col-sm-8 col-12 col-xl"
+          style={{ height: "300px" }}
+        >
+          <Channels></Channels>
+        </div>
+        <div
+          className="col-lg-3 col-md-4 col-sm-4 col-8 p-2"
+          style={{ height: "300px", maxWidth: "265px" }}
+        >
+          <Prefix setPrefix={setPrefix} prefix={prefix}></Prefix>
+        </div>
+        <div
+          className="col-lg-5 col-sm-12 col-12 p-2"
+          style={{ height: "300px" }}
+        >
+          <CommandsStatus prefix={prefix}></CommandsStatus>
+        </div>
       </div>
       <div className="row no-gutters">
         <div
-          className="col-12 col-md-6 pl-2 pr-3 py-3"
+          className="col-12 col-md-6 py-3 pl-2 pr-md-3 pr-2"
           style={{ height: "300px" }}
         >
           <div className="pnl convex-1 shn">
@@ -33,7 +48,7 @@ const Dashboard = () => {
           </div>
         </div>
         <div
-          className="col-12 col-md-6 pl-3 pr-2 py-3"
+          className="col-12 col-md-6 py-3 pl-md-3 pl-2 pr-2"
           style={{ height: "300px" }}
         >
           <div className="pnl convex-1 shn">
@@ -48,7 +63,7 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="row no-gutters">
-        <div className="col-auto pl-2 p-3" style={{ height: "400px" }}>
+        <div className="col-auto p-2" style={{ height: "400px" }}>
           <Table></Table>
         </div>
       </div>
