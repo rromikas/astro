@@ -6,7 +6,6 @@ const Navbar = (props) => {
   const menuClass =
     "col-12 col-md-auto pln text-right text-md-center pl-3 crs-pntr";
   const dispatch = useDispatch();
-  console.log("Navbar atejo props", props);
   return (
     <div className="container-fluid p-3 justify-content-between align-items-center">
       <div className="row no-gutters justify-content-between">

@@ -67,7 +67,11 @@ const Table = () => {
                         >
                           {x === "image" ? (
                             <div style={{ width: "30px", heigth: "30px" }}>
-                              <img src={y[x]} className="img-fluid"></img>
+                              <img
+                                alt={y[x]}
+                                src={y[x]}
+                                className="img-fluid"
+                              ></img>
                             </div>
                           ) : x === "role" ? (
                             <DropDown

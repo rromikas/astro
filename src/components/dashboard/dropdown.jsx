@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { FaCaretDown, FaAutoprefixer } from "react-icons/fa";
+import { FaCaretDown } from "react-icons/fa";
+import { uid } from "react-uid";
 const DropDown = ({ items, current, show, open, place }) => {
   const [curr, setCurr] = useState(current);
   return (
@@ -19,7 +20,11 @@ const DropDown = ({ items, current, show, open, place }) => {
         }}
       >
         {items.map((x) => {
-          return <div onClick={() => setCurr(x)}>{x}</div>;
+          return (
+            <div key={uid(x)} onClick={() => setCurr(x)}>
+              {x}
+            </div>
+          );
         })}
       </div>
     </div>
