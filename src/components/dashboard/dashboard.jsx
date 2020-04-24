@@ -63,7 +63,7 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="row no-gutters">
-        <div className="col-auto p-2" style={{ height: "400px" }}>
+        <div className="col p-2" style={{ height: "400px", width: "600px" }}>
           <Table></Table>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Scrollbars } from "react-custom-scrollbars";
 import {
   onMD,
   onML,
@@ -14,16 +15,28 @@ const CommandsStatus = ({ prefix }) => {
   return (
     <div className="pnl convex-1 row px-4 py-2 no-gutters justify-content-between shn h-100">
       <div className="col-12 lead py-3 text-center h-20">Commands Status</div>
-      <div
-        className="col-12 h-60 px-3"
-        style={{ overflowY: "scroll", overflowX: "hidden" }}
+      <Scrollbars
+        hideTracksWhenNotNeeded
+        className="col-11 col-lg-10 mx-auto h-60 px-3"
+        renderTrackHorizontal={(props) => (
+          <div {...props} className="track-horizontal" />
+        )}
+        renderTrackVertical={(props) => (
+          <div {...props} className="track-vertical" />
+        )}
+        renderThumbHorizontal={(props) => (
+          <div {...props} className="thumb-horizontal" />
+        )}
+        renderThumbVertical={(props) => (
+          <div {...props} className="thumb-vertical" />
+        )}
       >
-        <div className="row no-gutters h-100 justify-content-center">
+        <div className="row no-gutters h-100 justify-content-center pr-3">
           {commands.map((x, i) => {
             return (
               <div
                 key={`channel-${i}`}
-                className="col-12 col-sm-6 col-lg-9 h-25"
+                className="col-12 col-sm-6 col-lg-12 h-25"
               >
                 <div className="row no-gutters h-100 flex-nowrap justify-content-between">
                   <div className="col lead text-nowrap">{prefix + x.name}</div>
@@ -61,7 +74,7 @@ const CommandsStatus = ({ prefix }) => {
             );
           })}
         </div>
-      </div>
+      </Scrollbars>
     </div>
   );
 };

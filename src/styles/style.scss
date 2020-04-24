@@ -11,24 +11,38 @@ $concave1: inset 6px 6px 10px 0 rgba(0, 0, 0, 0.2),
 $concave2: inset 2px 2px 6px 0 rgba(0, 0, 0, 0.2),
   inset -3px -3px 5px 0 rgba(255, 255, 255, 0.34);
 
-div::-webkit-scrollbar {
-  width: 1rem;
-}
-
-div::-webkit-scrollbar-track {
+.track-horizontal {
   background: transparent;
   box-shadow: $concave2;
   border-radius: 0.5rem;
+  width: 100%;
+  height: 1rem !important;
+  bottom: 0;
 }
 
-div::-webkit-scrollbar-thumb {
+.track-vertical {
+  background: transparent;
+  box-shadow: $concave2;
+  border-radius: 0.5rem;
+  width: 1rem !important;
+  height: 100%;
+  right: 0;
+}
+
+.thumb-horizontal {
   border-radius: 0.5rem;
   background: $enabledButton;
   box-shadow: $convex2;
 }
 
-div::-webkit-scrollbar-corner {
-  background: transparent;
+.thumb-vertical {
+  border-radius: 0.5rem;
+  background: $enabledButton;
+  box-shadow: $convex2;
+}
+
+.view {
+  padding-right: 20px;
 }
 
 html,

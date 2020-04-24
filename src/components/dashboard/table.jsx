@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { users } from "../../data/data";
 import DropDown from "./dropdown";
+import { Scrollbars } from "react-custom-scrollbars";
 
 const Table = () => {
   const [drop, setDrop] = useState([-1, -1]); // one drop down menu at a time on the table
@@ -23,20 +24,31 @@ const Table = () => {
       <div className="container-fluid">
         <div className="row no-gutters h-100">
           <div className="col-12 text-center lead">User Manager</div>
-          <div
+          <Scrollbars
+            hideTracksWhenNotNeeded
             className="col-12 h-83"
-            style={{
-              overflow: "auto",
-            }}
+            renderTrackHorizontal={(props) => (
+              <div {...props} className="track-horizontal" />
+            )}
+            renderTrackVertical={(props) => (
+              <div {...props} className="track-vertical" />
+            )}
+            renderThumbHorizontal={(props) => (
+              <div {...props} className="thumb-horizontal" />
+            )}
+            renderThumbVertical={(props) => (
+              <div {...props} className="thumb-vertical" />
+            )}
+            renderView={(props) => <div {...props} className="view" />}
           >
             <div
-              className="row no-gutters justify-content-around"
-              style={{ minWidth: "600px", fontSize: "17px" }}
+              className="row no-gutters justify-content-around pb-2 pr-2"
+              style={{ minWidth: "700px", fontSize: "17px" }}
             >
               {Object.keys(users[0]).map((x, i) => {
                 return (
                   <div
-                    className="col-auto"
+                    className="col-auto pr-2"
                     style={{ borderRadiius: "25px" }}
                     key={`tbl-clmn-${i}`}
                   >
@@ -95,7 +107,7 @@ const Table = () => {
                 );
               })}
             </div>
-          </div>
+          </Scrollbars>
         </div>
       </div>
     </div>
