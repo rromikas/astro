@@ -208,22 +208,6 @@ body {
   user-drag: none;
 }
 
-.shn {
-  background: linear-gradient(135deg, rgba(2, 0, 36, 0) 4%, rgba(40, 31, 187, 0) 28%, white 48%, rgba(8, 32, 136, 0) 71%, rgba(0, 212, 255, 0) 100%);
-  background-size: 200% 200%;
-  background-repeat: no-repeat;
-  background-position: 200% 200%;
-  -webkit-transition: background-position 1s;
-  transition: background-position 1s;
-}
-
-.shn:hover {
-  -webkit-transition: background-position 1s;
-  transition: background-position 1s;
-  -webkit-animation: shine 1s linear;
-          animation: shine 1s linear;
-}
-
 @-webkit-keyframes shine {
   0% {
     background-position: 200% 200%;
