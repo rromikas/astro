@@ -103,3 +103,20 @@ export const handleTouchEnd = (e, chnl, setState) => {
 
   document.body.classList.remove("selectDisable");
 };
+
+export const getLongestWidth = (words) => {
+  let w = [];
+  words.forEach((x) => {
+    console.log(x);
+    let el = document.createElement("span");
+    el.style.opacity = 0;
+    el.innerHTML = x;
+    el.className = "lead";
+    el.style.position = "absolute";
+    el.style.bottom = "-50px";
+    document.body.appendChild(el);
+    w.push(el.getBoundingClientRect().width);
+    el.parentNode.removeChild(el);
+  });
+  return Math.max(...w);
+};

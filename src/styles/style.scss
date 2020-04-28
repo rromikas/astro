@@ -4,6 +4,8 @@ $convex1: 12px 12px 16px 0 rgba(0, 0, 0, 0.25),
   -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
 $convex2: 3px 4px 6px rgba(0, 0, 0, 0.24),
   -2px -2px 6px rgba(255, 255, 255, 0.35);
+$convex3: 1px 1px 3px rgba(0, 0, 0, 0.24),
+  -1px -1px 3px rgba(255, 255, 255, 0.35);
 
 $concave1: inset 6px 6px 10px 0 rgba(0, 0, 0, 0.2),
   inset -6px -6px 10px 0 rgba(255, 255, 255, 0.5);
@@ -43,6 +45,7 @@ $concave2: inset 2px 2px 6px 0 rgba(0, 0, 0, 0.2),
 
 .view {
   padding-right: 20px;
+  padding-bottom: 20px;
 }
 
 html,
@@ -171,6 +174,16 @@ body {
   text-align: center;
 }
 
+.auto-msg-txtar {
+  background: transparent;
+  width: 100%;
+  height: 100%;
+  font-weight: 300;
+  outline: none;
+  border: none;
+  color: white;
+  overflow: hidden;
+}
 .select-disable {
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -268,12 +281,61 @@ $widths: 100;
   top: 80%;
   max-height: 110px;
   overflow-y: auto;
+  font-size: 15px;
 }
 
-.drdwn-menu > div:hover {
+.drdwn-menu-view > div:hover {
   background: $enabledButton;
 }
 
-.drdwn-menu > div {
+.drdwn-menu-view > div {
   padding: 5px 40px 5px 20px;
+}
+.convex-pressed {
+  // border: 0.5px solid rgba(226, 217, 217, 0.5);
+  box-shadow: $convex3;
+}
+
+.borderless td,
+.borderless th {
+  border: none !important;
+}
+
+.table th {
+  padding: 0 !important;
+}
+
+.table th,
+table td {
+  text-align: center;
+}
+
+.table {
+  margin-bottom: 0 !important;
+}
+
+.choice {
+  margin: 2px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.choice:hover {
+  box-shadow: $convex2;
+}
+
+svg {
+  cursor: pointer;
+}
+
+input {
+  background-color: transparent !important;
+  outline: none !important;
+  border: none !important;
+  color: white;
+}
+
+table {
+  font-size: 18px !important;
+  color: white !important;
 }

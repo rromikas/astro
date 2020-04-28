@@ -13,8 +13,8 @@ import { commands } from "../../data/data";
 const CommandsStatus = ({ prefix }) => {
   const [move, setMove] = useState([0, 0]);
   return (
-    <div className="pnl convex-1 row px-4 py-2 no-gutters justify-content-between shn h-100">
-      <div className="col-12 lead py-3 text-center h-20">Commands Status</div>
+    <div className="pnl convex-1 row px-4 py-2 pt-4 no-gutters justify-content-between shn h-100">
+      <div className="col-12 lead text-center">Commands Status</div>
       <Scrollbars
         hideTracksWhenNotNeeded
         className="col-11 col-lg-10 mx-auto h-60 px-3"
