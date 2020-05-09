@@ -5,7 +5,7 @@ $convex1: 12px 12px 16px 0 rgba(0, 0, 0, 0.25),
 $convex2: 3px 4px 6px rgba(0, 0, 0, 0.24),
   -2px -2px 6px rgba(255, 255, 255, 0.35);
 $convex3: 1px 1px 3px rgba(0, 0, 0, 0.24),
-  -1px -1px 3px rgba(255, 255, 255, 0.35);
+  -1px -1px 3px rgba(255, 255, 255, 0.35), inset 0px 0px 0px 3px white;
 
 $concave1: inset 6px 6px 10px 0 rgba(0, 0, 0, 0.2),
   inset -6px -6px 10px 0 rgba(255, 255, 255, 0.5);
@@ -42,10 +42,16 @@ $concave2: inset 2px 2px 6px 0 rgba(0, 0, 0, 0.2),
   background: $enabledButton;
   box-shadow: $convex2;
 }
+.scrbrd-row > td {
+  padding: 0.65rem !important;
+}
 
 .view {
+  margin-bottom: -20px !important;
+  margin-right: -20px !important;
   padding-right: 20px;
-  padding-bottom: 20px;
+  padding-left: 5px;
+  padding-bottom: 10px;
 }
 
 html,
@@ -68,9 +74,12 @@ body,
   cursor: pointer;
 }
 
-html,
-body {
+html {
   background: radial-gradient(circle at left, #1fc274, #0026dd);
+}
+
+body {
+  background-color: transparent !important;
 }
 
 .outline-btn {
@@ -288,12 +297,18 @@ $widths: 100;
   background: $enabledButton;
 }
 
+.drdwn-menu-view {
+  margin-bottom: -20px !important;
+  margin-right: -20px !important;
+}
+
 .drdwn-menu-view > div {
   padding: 5px 40px 5px 20px;
 }
 .convex-pressed {
   // border: 0.5px solid rgba(226, 217, 217, 0.5);
   box-shadow: $convex3;
+  transition: box-shadow 0.3s;
 }
 
 .borderless td,

@@ -4,7 +4,7 @@ const Logo = () => {
   return (
     <div>
       <div className="logo">ASTRO</div>
-      <div>Discord chat moderator</div>
+      {/* <div>Discord chat moderator</div> */}
     </div>
   );
 };

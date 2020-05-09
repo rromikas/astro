@@ -7,7 +7,7 @@ const Navbar = (props) => {
     "col-12 col-md-auto pln text-right text-md-center pl-3 crs-pntr";
   const dispatch = useDispatch();
   return (
-    <div className="container-fluid p-3 justify-content-between align-items-center">
+    <div className="container-fluid px-3 pt-3 justify-content-between align-items-center pb-0">
       <div className="row no-gutters justify-content-between">
         <div className="col-auto pr-2 pb-2">
           <Logo></Logo>
