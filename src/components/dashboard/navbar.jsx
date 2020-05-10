@@ -32,7 +32,7 @@ const Navbar = ({ setMain, main }) => {
           </div>
         </div>
       </div>
-      <div className="col-12 col-md-auto">
+      <div className="col-12 col-md">
         <div className="row no-gutters">
           <div className="col-4 p-1 mb-2" style={{ height: "60px" }}>
             <div
