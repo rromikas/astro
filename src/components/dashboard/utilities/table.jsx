@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { users } from "../../../data/data";
 import DropDown from "./dropdown";
-import { Scrollbars } from "react-custom-scrollbars";
+import PerfectScrollbar from "react-perfect-scrollbar";
 
 const Table = () => {
+  const scrollbar = useRef(null);
   const [drop, setDrop] = useState([-1, -1]); // one drop down menu at a time on the table
   const header = [
     "image",
@@ -15,6 +16,9 @@ const Table = () => {
     "status",
   ];
   const title = "User Manager";
+  useEffect(() => {
+    scrollbar.current.updateScroll();
+  }, []);
   return (
     <div
       className="pnl convex-1 p-4 shn"
@@ -25,22 +29,10 @@ const Table = () => {
       <div className="container-fluid">
         <div className="row no-gutters h-100">
           <div className="col-12 text-center lead">User Manager</div>
-          <Scrollbars
-            hideTracksWhenNotNeeded
+          <PerfectScrollbar
             className="col-12 h-83"
-            renderTrackHorizontal={(props) => (
-              <div {...props} className="track-horizontal" />
-            )}
-            renderTrackVertical={(props) => (
-              <div {...props} className="track-vertical" />
-            )}
-            renderThumbHorizontal={(props) => (
-              <div {...props} className="thumb-horizontal" />
-            )}
-            renderThumbVertical={(props) => (
-              <div {...props} className="thumb-vertical" />
-            )}
-            renderView={(props) => <div {...props} className="view" />}
+            ref={scrollbar}
+            options={{ wheelSpeed: 0.5 }}
           >
             <div
               className="row no-gutters justify-content-around pb-2 pr-2"
@@ -112,7 +104,7 @@ const Table = () => {
                 );
               })}
             </div>
-          </Scrollbars>
+          </PerfectScrollbar>
         </div>
       </div>
     </div>

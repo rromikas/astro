@@ -1,5 +1,5 @@
 import React from "react";
-import { Scrollbars } from "react-custom-scrollbars";
+import PerfectScrollbar from "react-perfect-scrollbar";
 import { FaPen, FaTrash, FaCheck, FaPlus } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { getLongestWidth } from "../utilities/events";
@@ -30,41 +30,27 @@ const AutoMessages = () => {
   useEffect(() => {
     let longest = getLongestWidth(allEvents);
     setLongestEvent(longest);
-    if (
-      autoroles.length &&
-      autoroles[autoroles.length - 1].on.current === "select"
-    ) {
-      setEditRoles((edit) =>
-        Object.assign({}, edit, {
-          type: "edit",
-          id: autoroles.length - 1,
-          show: true,
-        })
-      );
-    }
-  }, [autoroles]);
+  }, []);
   return (
     <div className="w-100 py-4 px-4" style={{ position: "relative" }}>
       <div className="lead justify-content-center mb-3 d-flex">
         Auto Messages
       </div>
-      {editRoles.type === "wait" && (
+      {editRoles.type === "wait" ? (
         <div
-          onMouseDown={(e) => {
-            e.currentTarget.classList.add("convex-pressed");
-            e.currentTarget.classList.remove("convex-2");
+          onClick={(e) => {
+            let index = autoroles.length;
             setAutoroles((roles) => {
               let arr = [...roles];
-              arr[arr.length] = {
+              arr[index] = {
                 on: { current: "select" },
                 message: { current: "type some message" },
               };
               return arr;
             });
-          }}
-          onMouseUp={(e) => {
-            e.currentTarget.classList.remove("convex-pressed");
-            e.currentTarget.classList.add("convex-2");
+            setEditRoles((edit) =>
+              Object.assign({}, edit, { type: "edit", id: index, show: true })
+            );
           }}
           style={{
             position: "absolute",
@@ -82,23 +68,64 @@ const AutoMessages = () => {
         >
           <FaPlus fontSize="18"></FaPlus>
         </div>
+      ) : (
+        <div
+          onClick={() => {
+            setEditRoles((edit) => Object.assign({}, edit, { type: "wait" }));
+          }}
+          style={{
+            position: "absolute",
+            top: "30px",
+            right: "30px",
+            width: "30px",
+            height: "30px",
+            borderRadius: "50%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
+          }}
+          className="convex-2 select-disable"
+        >
+          <FaCheck fontSize="18"></FaCheck>
+        </div>
       )}
-      <Scrollbars
-        hideTracksWhenNotNeeded
-        className="w-100 h-71"
-        renderTrackHorizontal={(props) => (
-          <div {...props} className="track-horizontal" />
-        )}
-        renderTrackVertical={(props) => (
-          <div {...props} className="track-vertical" />
-        )}
-        renderThumbHorizontal={(props) => (
-          <div {...props} className="thumb-horizontal" />
-        )}
-        renderThumbVertical={(props) => (
-          <div {...props} className="thumb-vertical" />
-        )}
-        renderView={(props) => <div {...props} className="view" />}
+      {editRoles.type !== "wait" && (
+        <div
+          onClick={() => {
+            setAutoroles((roles) => {
+              let arr = [...roles];
+              arr.splice(editRoles.id, 1);
+              return arr;
+            });
+            setEditRoles((edit) =>
+              Object.assign({}, edit, {
+                type: "wait",
+                show: false,
+                id: -1,
+              })
+            );
+          }}
+          style={{
+            position: "absolute",
+            top: "30px",
+            left: "30px",
+            width: "30px",
+            height: "30px",
+            borderRadius: "50%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
+          }}
+          className="convex-2 select-disable"
+        >
+          <FaTrash fontSize="18"></FaTrash>
+        </div>
+      )}
+      <PerfectScrollbar
+        options={{ handlers: ["keyboard", "wheel", "touch"], wheelSpeed: 0.5 }}
+        className="w-100 h-71 px-3"
       >
         {editRoles.type === "wait" ? (
           <table className="table borderless w-100 lead">
@@ -182,115 +209,70 @@ const AutoMessages = () => {
                 <td scope="col" style={{ padding: 0 }}>
                   Message
                 </td>
-                <td scope="col" style={{ padding: 0 }}>
-                  Edit
-                </td>
               </tr>
-
-              <tr style={{ borderRadius: "25px", overflow: "hidden" }}>
-                <td style={{ padding: "5px" }}>
-                  {autoroles[editRoles.id].on.current}
-                  <div style={{ height: "102px", padding: "5px" }}>
-                    <Scrollbars
-                      style={{ minWidth: `${longestEvent + 55}px` }}
-                      className="concave-2 rounded"
-                      hideTracksWhenNotNeeded
-                      renderTrackHorizontal={(props) => (
-                        <div {...props} className="track-horizontal" />
-                      )}
-                      renderTrackVertical={(props) => (
-                        <div {...props} className="track-vertical" />
-                      )}
-                      renderThumbHorizontal={(props) => (
-                        <div {...props} className="thumb-horizontal" />
-                      )}
-                      renderThumbVertical={(props) => (
-                        <div {...props} className="thumb-vertical" />
-                      )}
-                      renderView={(props) => (
-                        <div {...props} className="view" />
-                      )}
-                    >
-                      {allEvents.map((ev) => {
-                        return (
-                          <div
-                            className="choice"
-                            onClick={() => {
-                              setAutoroles((roles) => {
-                                console.log(roles);
-                                let arr = [...roles];
-                                arr[editRoles.id].on.current = ev;
-                                return arr;
-                              });
-                            }}
-                          >
-                            {ev}
-                          </div>
-                        );
-                      })}
-                    </Scrollbars>
-                  </div>
-                </td>
-                <td
-                  style={{
-                    height: "94px",
-                    padding: "5px",
-                  }}
-                >
-                  <textarea
-                    value={autoroles[editRoles.id].message.current}
-                    type="text"
-                    className="auto-msg-txtar w-100 h-100 concave-2 rounded"
-                    onChange={(e) => {
-                      e.persist();
-                      setAutoroles((roles) => {
-                        let arr = [...roles];
-                        arr[editRoles.id].message.current = e.target.value;
-                        return arr;
-                      });
-                    }}
-                  ></textarea>
-                </td>
-                <td>
-                  <div
+              {autoroles[editRoles.id] ? (
+                <tr style={{ borderRadius: "25px", overflow: "hidden" }}>
+                  <td style={{ padding: "5px" }}>
+                    {autoroles[editRoles.id].on.current}
+                    <div style={{ height: "102px", padding: "5px" }}>
+                      <PerfectScrollbar
+                        style={{ minWidth: `${longestEvent + 55}px` }}
+                        options={{
+                          wheelSpeed: 0.5,
+                          handlers: ["keyboard", "wheel", "touch"],
+                        }}
+                        className="concave-2 rounded"
+                      >
+                        {allEvents.map((ev) => {
+                          return (
+                            <div
+                              className="choice"
+                              onClick={() => {
+                                setAutoroles((roles) => {
+                                  console.log(roles);
+                                  let arr = [...roles];
+                                  arr[editRoles.id].on.current = ev;
+                                  return arr;
+                                });
+                              }}
+                            >
+                              {ev}
+                            </div>
+                          );
+                        })}
+                      </PerfectScrollbar>
+                    </div>
+                  </td>
+                  <td
                     style={{
-                      display: "flex",
-                      justifyContent: "space-around",
-                      padding: "5px 0px",
+                      height: "94px",
+                      padding: "5px",
                     }}
                   >
-                    <FaCheck
-                      onClick={() => {
-                        setEditRoles((edit) =>
-                          Object.assign({}, edit, { type: "wait" })
-                        );
-                      }}
-                    ></FaCheck>
-                    <FaTrash
-                      onClick={() => {
+                    <textarea
+                      value={autoroles[editRoles.id].message.current}
+                      type="text"
+                      className="auto-msg-txtar w-100 h-100 concave-2 rounded"
+                      onChange={(e) => {
+                        e.persist();
                         setAutoroles((roles) => {
                           let arr = [...roles];
-                          arr.splice(editRoles.id, 1);
+                          arr[editRoles.id].message.current = e.target.value;
                           return arr;
                         });
-                        setEditRoles((edit) =>
-                          Object.assign({}, edit, {
-                            type: "wait",
-                            show: false,
-                            id: -1,
-                          })
-                        );
                       }}
-                    ></FaTrash>
-                  </div>
-                </td>
-              </tr>
+                    ></textarea>
+                  </td>
+                </tr>
+              ) : (
+                ""
+              )}
             </tbody>
           </table>
         ) : (
           <div></div>
         )}
-      </Scrollbars>
+      </PerfectScrollbar>
     </div>
   );
 };

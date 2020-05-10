@@ -7,8 +7,8 @@ const Level = ({ level, exp }) => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        height: "75px",
-        width: "75px",
+        height: "70px",
+        width: "70px",
         position: "relative",
       }}
     >
@@ -16,8 +16,8 @@ const Level = ({ level, exp }) => {
       {level}
       <svg
         style={{ position: "absolute", top: 0, left: 0 }}
-        width="75"
-        height="75"
+        width="70"
+        height="70"
         viewBox="0 0 190 190"
         fill="none"
         strokeWidth="10px"

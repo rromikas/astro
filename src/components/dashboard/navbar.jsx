@@ -3,7 +3,7 @@ import { users } from "../../data/data";
 const Navbar = ({ setMain, main }) => {
   return (
     <div className="row no-gutters">
-      <div className="col p-1 mb-2" style={{ height: "60px" }}>
+      <div className="col-12 col-md p-1 mb-2" style={{ height: "60px" }}>
         <div className="row no-gutters justify-content-start h-100">
           <div
             className="h-100 convex-2"
@@ -32,64 +32,65 @@ const Navbar = ({ setMain, main }) => {
           </div>
         </div>
       </div>
-      <div className="col-auto p-1 mr-2 mb-2" style={{ height: "60px" }}>
-        <div
-          className={`h-100 convex-2${
-            main === "server" ? " convex-pressed" : ""
-          }`}
-          style={{
-            borderRadius: "50px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            width: "130px",
-            cursor: "pointer",
-          }}
-          onClick={() => {
-            setMain("server");
-          }}
-        >
-          Server
-        </div>
-      </div>
-      <div className="col-auto p-1 mr-2 mb-2" style={{ height: "60px" }}>
-        <div
-          className={`h-100 convex-2${
-            main === "users" ? " convex-pressed" : ""
-          }`}
-          style={{
-            borderRadius: "50px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            width: "130px",
-            cursor: "pointer",
-          }}
-          onClick={() => {
-            setMain("users");
-          }}
-        >
-          Users
-        </div>
-      </div>
-      <div className="col-auto p-1 mb-2" style={{ height: "60px" }}>
-        <div
-          className={`h-100 convex-2${
-            main === "stats" ? " convex-pressed" : ""
-          }`}
-          style={{
-            borderRadius: "50px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            width: "130px",
-            cursor: "pointer",
-          }}
-          onClick={() => {
-            setMain("stats");
-          }}
-        >
-          Stats
+      <div className="col-12 col-md-auto">
+        <div className="row no-gutters">
+          <div className="col-4 p-1 mb-2" style={{ height: "60px" }}>
+            <div
+              className={`h-100 ${
+                main === "server" ? " concave-2" : "convex-2"
+              }`}
+              style={{
+                borderRadius: "50px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                setMain("server");
+              }}
+            >
+              Server
+            </div>
+          </div>
+          <div className="col-4 p-1 mb-2" style={{ height: "60px" }}>
+            <div
+              className={`h-100 ${
+                main === "users" ? " concave-2" : "convex-2"
+              }`}
+              style={{
+                borderRadius: "50px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                setMain("users");
+              }}
+            >
+              Users
+            </div>
+          </div>
+          <div className="col-4 p-1 mb-2" style={{ height: "60px" }}>
+            <div
+              className={`h-100 ${
+                main === "stats" ? " concave-2" : "convex-2"
+              }`}
+              style={{
+                borderRadius: "50px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                setMain("stats");
+              }}
+            >
+              Stats
+            </div>
+          </div>
         </div>
       </div>
     </div>

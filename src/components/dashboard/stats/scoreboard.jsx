@@ -1,27 +1,23 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { users } from "../../../data/data";
 import Level from "./level";
-import { Scrollbars } from "react-custom-scrollbars";
+import PerfectScrollbar from "react-perfect-scrollbar";
 const Scoreboard = () => {
+  const scrollbar = useRef(null);
+  useEffect(() => {
+    scrollbar.current.updateScroll();
+  }, []);
   return (
     <div className="w-100 h-100 pt-4 px-4">
-      <div className="lead text-center ">Leaderboard</div>
-      <Scrollbars
-        hideTracksWhenNotNeeded
-        className="w-100 h-85"
-        renderTrackHorizontal={(props) => (
-          <div {...props} className="track-horizontal" />
-        )}
-        renderTrackVertical={(props) => (
-          <div {...props} className="track-vertical" />
-        )}
-        renderThumbHorizontal={(props) => (
-          <div {...props} className="thumb-horizontal" />
-        )}
-        renderThumbVertical={(props) => (
-          <div {...props} className="thumb-vertical" />
-        )}
-        renderView={(props) => <div {...props} className="view" />}
+      <div className="lead text-center mb-3">Leaderboard</div>
+      <PerfectScrollbar
+        ref={scrollbar}
+        options={{
+          wheelSpeed: 0.4,
+          wheelPropagation: false,
+          handlers: ["keyboard", "wheel", "touch"],
+        }}
+        className="w-100 h-84 px-3"
       >
         <table className="table borderless w-100 lead">
           <tbody>
@@ -52,26 +48,34 @@ const Scoreboard = () => {
                     </div>
                   </td>
                   <td className="align-middle text-center">
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                      <div
-                        style={{
-                          width: "50px",
-                          height: "50px",
-                          marginRight: "10px",
-                        }}
-                      >
-                        <img
-                          src={x.image}
-                          alt={x.image}
-                          className="img-fluid"
-                        ></img>
-                      </div>
-                      <div>{x.name}</div>
+                    <div
+                      style={{
+                        width: "40px",
+                        height: "40px",
+                        marginRight: "10px",
+                      }}
+                    >
+                      <img
+                        src={x.image}
+                        alt={x.image}
+                        className="img-fluid"
+                      ></img>
                     </div>
                   </td>
                   <td className="align-middle text-center">
-                    Experience <br></br>
-                    {x.exp}
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <div
+                        style={{
+                          display: "flex",
+                          flexWrap: "wrap",
+                          width: "90%",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <div style={{ marginRight: "5px" }}>{x.name}</div>
+                        <div> Exp: {x.exp}</div>
+                      </div>
+                    </div>
                   </td>
                   <td className="align-middle d-flex justify-content-center">
                     <Level level={x.level} exp={x.exp}></Level>
@@ -80,7 +84,7 @@ const Scoreboard = () => {
               ))}
           </tbody>
         </table>
-      </Scrollbars>
+      </PerfectScrollbar>
     </div>
   );
 };

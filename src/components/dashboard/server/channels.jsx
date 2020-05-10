@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Scrollbars } from "react-custom-scrollbars";
+import React, { useState, useRef, useEffect } from "react";
+import PerfectScrollbar from "react-perfect-scrollbar";
 import {
   onMD,
   onML,
@@ -12,40 +12,36 @@ import {
 import { channels } from "../../../data/data";
 const Channels = ({ prefix }) => {
   const [move, setMove] = useState([0, 0]);
+  const scrollbar = useRef(null);
+  useEffect(() => {
+    scrollbar.current.updateScroll();
+  }, []);
   return (
     <div className="pnl convex-1 row px-4 py-2 pt-4 no-gutters justify-content-between shn h-100">
       <div className="col-12 lead text-center">Channels</div>
-      <Scrollbars
-        hideTracksWhenNotNeeded
-        className="col-11 col-lg-10 mx-auto h-66 px-3"
+      <PerfectScrollbar
+        ref={scrollbar}
+        options={{
+          wheelSpeed: 0.4,
+          wheelPropagation: false,
+          handlers: ["keyboard", "wheel", "touch"],
+        }}
+        className={`col-11 col-lg-10 mx-auto h-71 mr-1`}
         style={{ minWidth: "245px" }}
-        renderTrackHorizontal={(props) => (
-          <div {...props} className="track-horizontal" />
-        )}
-        renderTrackVertical={(props) => (
-          <div {...props} className="track-vertical" />
-        )}
-        renderThumbHorizontal={(props) => (
-          <div {...props} className="thumb-horizontal" />
-        )}
-        renderThumbVertical={(props) => (
-          <div {...props} className="thumb-vertical" />
-        )}
-        renderView={(props) => <div {...props} className="view"></div>}
       >
-        <div
-          className={`row no-gutters h-100 justify-content-center${
-            channels.filter((x, i) => i < 3).length > 4 ? " pr-3" : ""
-          } `}
-        >
+        <div className={`row no-gutters h-100 justify-content-center`}>
           {channels
-            .filter((x, i) => i < 3)
+            .filter((x, i) => i < 5)
             .map((x, i) => {
               return (
-                <div key={`channel-${i}`} className="col-12 h-26">
+                <div
+                  key={`channel-${i}`}
+                  className="col-12 h-24 px-4"
+                  style={{ marginBottom: "2px" }}
+                >
                   <div className="row no-gutters h-100 flex-nowrap justify-content-between">
                     <div className="col lead text-nowrap">{x.name}</div>
-                    <div className="col-auto py-1" style={{ width: "78px" }}>
+                    <div className="col-auto py-1" style={{ width: "74px" }}>
                       <div
                         className="pnl concave-2"
                         style={{
@@ -78,7 +74,7 @@ const Channels = ({ prefix }) => {
               );
             })}
         </div>
-      </Scrollbars>
+      </PerfectScrollbar>
     </div>
   );
 };

@@ -43,7 +43,7 @@ $concave2: inset 2px 2px 6px 0 rgba(0, 0, 0, 0.2),
   box-shadow: $convex2;
 }
 .scrbrd-row > td {
-  padding: 0.65rem !important;
+  padding: 4px 0 !important;
 }
 
 .view {
@@ -353,4 +353,39 @@ input {
 table {
   font-size: 18px !important;
   color: white !important;
+}
+
+// .ps > .ps__rail-x,
+// .ps > .ps__rail-y {
+//   opacity: 1;
+// }
+
+// .ps__rail-y {
+//   box-shadow: $concave2;
+//   border-radius: 40px;
+//   height: 100% !important;
+// }
+
+// .ps:hover > .ps__rail-x,
+// .ps:hover > .ps__rail-y,
+// .ps--focus > .ps__rail-x,
+// .ps--focus > .ps__rail-y,
+// .ps--scrolling-x > .ps__rail-x,
+// .ps--scrolling-y > .ps__rail-y {
+//   opacity: 1 !important;
+// }
+// .ps__thumb-y {
+//   background-color: $enabledButton !important;
+//   border-radius: 40px !important;
+//   width: 15px !important;
+//   right: 0 !important;
+// }
+
+.ps .ps__rail-x:hover,
+.ps .ps__rail-y:hover,
+.ps .ps__rail-x:focus,
+.ps .ps__rail-y:focus,
+.ps .ps__rail-x.ps--clicking,
+.ps .ps__rail-y.ps--clicking {
+  background-color: transparent !important;
 }
