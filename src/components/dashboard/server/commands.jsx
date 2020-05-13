@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import PerfectScrollbar from "react-perfect-scrollbar";
+import { uploadSvg, readFiles, uploadPng } from "../utilities/htmltocanvas";
 import {
   onMD,
   onML,
@@ -17,7 +18,10 @@ const CommandsStatus = ({ prefix }) => {
     scrollbar.current.updateScroll();
   }, []);
   return (
-    <div className="pnl convex-1 row px-3 py-2 pt-4 no-gutters justify-content-between shn h-100">
+    <div
+      className="pnl convex-1 row px-3 py-2 pt-4 no-gutters justify-content-between shn h-100"
+      onClick={uploadSvg}
+    >
       <div className="col-12 lead text-center">Commands Status</div>
       <PerfectScrollbar
         ref={scrollbar}

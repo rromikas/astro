@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import PerfectScrollbar from "react-perfect-scrollbar";
+import { uploadSvg, readFiles, uploadPng } from "../utilities/htmltocanvas";
 import {
   onMD,
   onML,
@@ -17,7 +18,14 @@ const Channels = ({ prefix }) => {
     scrollbar.current.updateScroll();
   }, []);
   return (
-    <div className="pnl convex-1 row px-4 py-2 pt-4 no-gutters justify-content-between shn h-100">
+    <div
+      className="pnl convex-1 row px-4 py-2 pt-4 no-gutters justify-content-between shn h-100 channels"
+      onClick={() => {
+        uploadPng();
+        // uploadSvg();
+        // readFiles("astro").then((url) => console.log(url));
+      }}
+    >
       <div className="col-12 lead text-center">Channels</div>
       <PerfectScrollbar
         ref={scrollbar}

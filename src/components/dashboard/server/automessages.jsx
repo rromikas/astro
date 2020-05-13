@@ -3,6 +3,7 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 import { FaPen, FaTrash, FaCheck, FaPlus } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { getLongestWidth } from "../utilities/events";
+import { uid } from "react-uid";
 const AutoMessages = () => {
   const allEvents = ["Welcome", "Goodbye", "Level", "Role"];
   const [longestEvent, setLongestEvent] = useState(0);
@@ -144,6 +145,7 @@ const AutoMessages = () => {
               {autoroles.map((x, i) => {
                 return (
                   <tr
+                    key={uid(x)}
                     className="choice"
                     onClick={() =>
                       setEditRoles((edit) =>
@@ -157,7 +159,7 @@ const AutoMessages = () => {
                   >
                     {Object.keys(x).map((key) => {
                       return (
-                        <td style={{ padding: "7px" }}>
+                        <td style={{ padding: "7px" }} key={uid(key)}>
                           {key !== "edit" ? (
                             x[key].current.length > 12 ? (
                               x[key].current.substring(0, 12) + "..."

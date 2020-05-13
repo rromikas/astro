@@ -4,6 +4,7 @@ import { FaPen, FaTrash, FaCheck, FaPlus } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { getLongestWidth } from "../utilities/events";
 import AutosizeInput from "react-input-autosize";
+import { uid } from "react-uid";
 const AutoRoles = () => {
   const allRoles = ["Guest", "Fan", "Memeber", "Admin"];
   const allEvents = ["Join", "Level X"];
@@ -145,6 +146,7 @@ const AutoRoles = () => {
               {autoroles.map((x, i) => {
                 return (
                   <tr
+                    key={uid(x)}
                     className="choice"
                     onClick={() =>
                       setEditRoles((edit) =>
@@ -158,7 +160,7 @@ const AutoRoles = () => {
                   >
                     {Object.keys(x).map((key) => {
                       return (
-                        <td style={{ padding: "7px" }}>
+                        <td style={{ padding: "7px" }} key={uid(key)}>
                           {key !== "edit" ? (
                             x[key].current
                           ) : (

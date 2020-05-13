@@ -1167,4 +1167,11 @@ table {
 .ps .ps__rail-y.ps--clicking {
   background-color: transparent !important;
 }
+
+.square:before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+  /* initial ratio of 1:1*/
+}
 /*# sourceMappingURL=style.css.map */

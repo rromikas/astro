@@ -3,6 +3,7 @@ import Server from "./server/server";
 import Navbar from "./navbar";
 import Users from "./users/users";
 import Stats from "./stats/stats";
+import Appearance from "./appearance/appearance";
 const Dashboard = () => {
   const [main, setMain] = useState("server");
   return (
@@ -15,8 +16,12 @@ const Dashboard = () => {
         <Server></Server>
       ) : main === "users" ? (
         <Users></Users>
-      ) : (
+      ) : main === "stats" ? (
         <Stats></Stats>
+      ) : main === "appearance" ? (
+        <Appearance></Appearance>
+      ) : (
+        ""
       )}
     </div>
   );

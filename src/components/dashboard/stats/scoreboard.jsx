@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from "react";
 import { users } from "../../../data/data";
 import Level from "./level";
 import PerfectScrollbar from "react-perfect-scrollbar";
+import { uid } from "react-uid";
 const Scoreboard = () => {
   const scrollbar = useRef(null);
   useEffect(() => {
@@ -24,7 +25,7 @@ const Scoreboard = () => {
             {users
               .sort((a, b) => (a.exp > b.exp ? -1 : a.exp < b.exp ? 1 : 0))
               .map((x, i) => (
-                <tr className="scrbrd-row">
+                <tr className="scrbrd-row" key={uid(x)}>
                   <td className="align-middle text-center">
                     <div
                       style={{

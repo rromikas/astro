@@ -34,7 +34,7 @@ const Navbar = ({ setMain, main }) => {
       </div>
       <div className="col-12 col-md">
         <div className="row no-gutters">
-          <div className="col-4 p-1 mb-2" style={{ height: "60px" }}>
+          <div className="col-3 p-1 mb-2" style={{ height: "60px" }}>
             <div
               className={`h-100 ${
                 main === "server" ? " concave-2" : "convex-2"
@@ -53,7 +53,7 @@ const Navbar = ({ setMain, main }) => {
               Server
             </div>
           </div>
-          <div className="col-4 p-1 mb-2" style={{ height: "60px" }}>
+          <div className="col-3 p-1 mb-2" style={{ height: "60px" }}>
             <div
               className={`h-100 ${
                 main === "users" ? " concave-2" : "convex-2"
@@ -72,7 +72,7 @@ const Navbar = ({ setMain, main }) => {
               Users
             </div>
           </div>
-          <div className="col-4 p-1 mb-2" style={{ height: "60px" }}>
+          <div className="col-3 p-1 mb-2" style={{ height: "60px" }}>
             <div
               className={`h-100 ${
                 main === "stats" ? " concave-2" : "convex-2"
@@ -89,6 +89,25 @@ const Navbar = ({ setMain, main }) => {
               }}
             >
               Stats
+            </div>
+          </div>
+          <div className="col-3 p-1 mb-2" style={{ height: "60px" }}>
+            <div
+              className={`h-100 ${
+                main === "appearance" ? " concave-2" : "convex-2"
+              }`}
+              style={{
+                borderRadius: "50px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                setMain("appearance");
+              }}
+            >
+              Front
             </div>
           </div>
         </div>
