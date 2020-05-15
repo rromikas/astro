@@ -11,7 +11,7 @@ import {
   handleTouchEnd,
 } from "../utilities/events";
 import { channels } from "../../../data/data";
-const Channels = ({ prefix }) => {
+const Channels = ({ prefix, preview = false }) => {
   const [move, setMove] = useState([0, 0]);
   const scrollbar = useRef(null);
   useEffect(() => {
@@ -19,7 +19,9 @@ const Channels = ({ prefix }) => {
   }, []);
   return (
     <div
-      className="pnl convex-1 row px-4 py-2 pt-4 no-gutters justify-content-between shn h-100 channels"
+      className={`pnl${
+        !preview ? " convex-1" : ""
+      } row px-4 py-2 pt-4 no-gutters justify-content-between shn h-100 channels`}
       onClick={() => {
         uploadPng();
         // uploadSvg();

@@ -1,7 +1,7 @@
 import React from "react";
 const Chart = ({ data }) => {
   return (
-    <div className="container-fluid pt-4 px-4">
+    <div className="container-fluid py-4 px-4">
       <div className="row no-gutters lead mb-4 pl-4 justify-content-center">
         {data.title}
       </div>

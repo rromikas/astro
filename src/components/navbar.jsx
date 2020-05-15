@@ -25,9 +25,8 @@ const Navbar = (props) => {
               <div
                 className="pln"
                 onClick={() => {
-                  window.open(
-                    "https://discordapp.com/oauth2/authorize?client_id=683749582705786882&scope=bot&permissions=2146958591"
-                  );
+                  window.location =
+                    "https://discordapp.com/oauth2/authorize?client_id=683749582705786882&scope=bot&permissions=2146958591";
                 }}
               >
                 Connect
@@ -51,9 +50,8 @@ const Navbar = (props) => {
                       },
                     });
                   } else {
-                    window.open(
-                      "https://discordapp.com/api/oauth2/authorize?client_id=687765988636229689&redirect_uri=https%3A%2F%2Fastrobot.netlify.com%2Fauth&response_type=code&scope=identify%20email"
-                    );
+                    window.location =
+                      "https://discordapp.com/api/oauth2/authorize?client_id=687765988636229689&redirect_uri=https%3A%2F%2Fastrobot.netlify.com%2Fauth&response_type=code&scope=identify%20email";
                   }
                 }}
               >

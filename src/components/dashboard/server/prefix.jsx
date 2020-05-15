@@ -3,7 +3,7 @@ import { FaPen, FaCheck } from "react-icons/fa";
 const Prefix = ({ setPrefix, prefix }) => {
   const [edit, setEdit] = useState(false);
   return (
-    <div className="row no-gutters h-100">
+    <div className="row no-gutters h-100" style={{ maxWidth: "270px" }}>
       <div className={`col-md-12 h-30 p-2`}>
         <div className="shn convex-1 pnl align-items-center justify-content-center lead">
           Prefix
