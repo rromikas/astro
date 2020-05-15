@@ -22,7 +22,6 @@ const CommandsStatus = ({ prefix, preview = false }) => {
       className={`pnl${
         !preview ? " convex-1" : ""
       } row px-3 py-2 pt-4 no-gutters justify-content-between shn h-100`}
-      onClick={uploadSvg}
     >
       <div className="col-12 lead text-center">Commands Status</div>
       <PerfectScrollbar

@@ -22,11 +22,6 @@ const Channels = ({ prefix, preview = false }) => {
       className={`pnl${
         !preview ? " convex-1" : ""
       } row px-4 py-2 pt-4 no-gutters justify-content-between shn h-100 channels`}
-      onClick={() => {
-        uploadPng();
-        // uploadSvg();
-        // readFiles("astro").then((url) => console.log(url));
-      }}
     >
       <div className="col-12 lead text-center">Channels</div>
       <PerfectScrollbar
