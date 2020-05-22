@@ -76,7 +76,7 @@ const Landing = () => {
   }, [webFeature]);
   return (
     <div
-      className="px-4 container-fluid"
+      className="px-4 container-fluid mt-4 mt-md-0"
       style={{ maxWidth: "1300px", minHeight: "100%", margin: "auto" }}
     >
       <div className="row no-gutters mb-5 justify-content-center">
@@ -116,7 +116,7 @@ const Landing = () => {
                 })}
               </div>
             </div>
-            <div className="col-md-6 col-lg-4 col-12 d-flex align-items-center">
+            <div className="col-md-6 col-lg-4 col-12 d-flex align-items-center mt-4 mt-md-0">
               <div
                 className="w-100 p-3 concave-2 d-flex justify-content-center"
                 style={{ borderRadius: "50px" }}
@@ -159,7 +159,7 @@ const Landing = () => {
                 })}
               </div>
             </div>
-            <div className="col-md-6 col-lg-4 col-12 d-flex align-items-center">
+            <div className="col-md-6 col-lg-4 col-12 d-flex align-items-center mt-4 mt-md-0">
               <div
                 className="px-4 py-3 concave-2"
                 style={{
