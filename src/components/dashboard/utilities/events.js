@@ -107,7 +107,6 @@ export const handleTouchEnd = (e, chnl, setState) => {
 export const getLongestWidth = (words) => {
   let w = [];
   words.forEach((x) => {
-    console.log(x);
     let el = document.createElement("span");
     el.style.opacity = 0;
     el.innerHTML = x;
