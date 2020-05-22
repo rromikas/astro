@@ -2,7 +2,7 @@ import store from "../store/store";
 const DiscordOauth2 = require("discord-oauth2");
 const oauth = new DiscordOauth2();
 
-export const login = code => {
+export const login = (code) => {
   oauth
     .tokenRequest({
       clientId: "687765988636229689",
@@ -10,20 +10,18 @@ export const login = code => {
       code: code,
       scope: "identify email",
       grantType: "authorization_code",
-      redirectUri: "https://astrobot.netlify.com/auth"
+      redirectUri: "https://astrobot.netlify.com/auth",
     })
-    .then(async obj => {
+    .then(async (obj) => {
       if (obj.access_token) {
         getUser(obj.access_token);
       }
     });
 };
 
-export const getUser = token => {
-  oauth.getUser(token).then(obj => {
-    let state = store.getState();
-    console.log(state);
-    console.log(obj);
+export const getUser = (token) => {
+  oauth.getUser(token).then((obj) => {
+    console.log("user from discord", obj);
     store.dispatch({ type: "SET_USER", user: obj });
   });
 };

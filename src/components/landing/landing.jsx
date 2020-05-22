@@ -66,7 +66,6 @@ const Landing = () => {
   const [opacity, setOpacity] = useState(1);
   const [webFeature, setWebFeature] = useState(0);
   useEffect(() => {
-    console.log("USE EFFECT PROMOTIONS");
     const slider = setTimeout(async () => {
       setOpacity(0);
       await sleep(1000);
@@ -170,7 +169,6 @@ const Landing = () => {
                 }}
               >
                 <div
-                  onClick={() => setOpacity(0)}
                   style={{
                     transition: "opacity 1s",
                     opacity: opacity,
