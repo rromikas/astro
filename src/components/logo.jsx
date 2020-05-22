@@ -1,9 +1,8 @@
 import React from "react";
-
-const Logo = () => {
+const Logo = (props) => {
   return (
-    <div>
-      <div className="logo">ASTRO</div>
+    <div {...props}>
+      <div className="logo cursor-pointer">ASTRO</div>
       {/* <div>Discord chat moderator</div> */}
     </div>
   );

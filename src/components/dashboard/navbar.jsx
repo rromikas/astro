@@ -1,6 +1,6 @@
 import React from "react";
-import { users } from "../../data/data";
-const Navbar = ({ setMain, main }) => {
+
+const Navbar = ({ setMain, main, server }) => {
   return (
     <div className="row no-gutters">
       <div className="col-12 col-md p-1 mb-2" style={{ height: "60px" }}>
@@ -13,20 +13,20 @@ const Navbar = ({ setMain, main }) => {
               alignItems: "center",
               justifyContent: "space-between",
               width: "380px",
-              padding: "0 30px 0 10px",
+              padding: "0 30px 0 20px",
             }}
           >
             <div style={{ display: "flex", alignItems: "center" }}>
               <div
-                style={{ width: "32px", heigth: "32px", marginRight: "10px" }}
-              >
-                <img
-                  alt={users[0].image}
-                  src={users[0].image}
-                  className="img-fluid"
-                ></img>
-              </div>
-              {users[0].name} • {users[0].role}
+                className="enbl-btn mr-2"
+                style={{
+                  width: "15px",
+                  height: "15px",
+                  marginRight: "10px",
+                  borderRadius: "50%",
+                }}
+              ></div>
+              {server}
             </div>
             <div>Dashboard</div>
           </div>

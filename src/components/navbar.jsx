@@ -1,6 +1,8 @@
 import React from "react";
 import Logo from "./logo";
 import { connect, useDispatch } from "react-redux";
+import history from "../routing/history";
+import { invitationLink } from "../api/invitation";
 
 const Navbar = (props) => {
   const menuClass =
@@ -10,7 +12,7 @@ const Navbar = (props) => {
     <div className="container-fluid px-3 pt-3 justify-content-between align-items-center pb-0">
       <div className="row no-gutters justify-content-between">
         <div className="col-auto pr-2 pb-2">
-          <Logo></Logo>
+          <Logo onClick={() => history.push("/")}></Logo>
         </div>
         <div className="col">
           <div className="row no-gutters justify-content-end">
@@ -21,12 +23,21 @@ const Navbar = (props) => {
                 ""
               )}
             </div>
+            {props.user.username == "" && (
+              <div
+                className={menuClass}
+                onClick={() => {
+                  history.push("/servers");
+                }}
+              >
+                My servers
+              </div>
+            )}
             <div className={menuClass}>
               <div
                 className="pln"
                 onClick={() => {
-                  window.location =
-                    "https://discordapp.com/oauth2/authorize?client_id=683749582705786882&scope=bot&permissions=2146958591";
+                  window.location = invitationLink;
                 }}
               >
                 Connect

@@ -1174,4 +1174,12 @@ table {
   padding-top: 100%;
   /* initial ratio of 1:1*/
 }
+
+.table th {
+  padding: 20px 0 20px 0 !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
 /*# sourceMappingURL=style.css.map */
