@@ -23,16 +23,14 @@ const Navbar = (props) => {
                 ""
               )}
             </div>
-            {props.user.username == "" && (
-              <div
-                className={menuClass}
-                onClick={() => {
-                  history.push("/servers");
-                }}
-              >
-                My servers
-              </div>
-            )}
+            <div
+              className={menuClass}
+              onClick={() => {
+                history.push("/servers");
+              }}
+            >
+              My servers
+            </div>
             <div className={menuClass}>
               <div
                 className="pln"
