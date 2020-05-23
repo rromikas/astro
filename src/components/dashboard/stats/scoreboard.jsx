@@ -3,6 +3,7 @@ import { users } from "../../../data/data";
 import Level from "./level";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import { uid } from "react-uid";
+
 const Scoreboard = () => {
   const scrollbar = useRef(null);
   useEffect(() => {

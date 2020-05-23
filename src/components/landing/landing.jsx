@@ -9,6 +9,8 @@ import AutoRoles from "../dashboard/server/autoroles";
 import AutoMessages from "../dashboard/server/automessages";
 import Prefix from "../dashboard/server/prefix";
 import history from "../../routing/history";
+import { uid } from "react-uid";
+
 const webF = [
   <Commands prefix="!" preview></Commands>,
   <Channels preview></Channels>,
@@ -76,7 +78,7 @@ const Landing = () => {
   }, [webFeature]);
   return (
     <div
-      className="px-4 container-fluid mt-4 mt-md-0"
+      className="px-4 container-fluid"
       style={{ maxWidth: "1300px", minHeight: "100%", margin: "auto" }}
     >
       <div className="row no-gutters mb-5 justify-content-center">
@@ -107,6 +109,7 @@ const Landing = () => {
                 {botFeatures.map((x) => {
                   return (
                     <div
+                      key={uid(x)}
                       className="col-auto px-4 py-2 m-2 convex-2"
                       style={{ borderRadius: "50px" }}
                     >
@@ -150,6 +153,7 @@ const Landing = () => {
                 {websiteFeatures.map((x) => {
                   return (
                     <div
+                      key={uid(x)}
                       className="col-auto px-4 py-2 m-2 convex-2"
                       style={{ borderRadius: "50px" }}
                     >

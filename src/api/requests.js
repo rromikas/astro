@@ -1,19 +1,18 @@
-const origin = "http://78.63.244.233:8080";
+const axios = require("axios");
 
 export const getGuilds = (token, callback) => {
-  fetch(`${origin}/guilds`, {
-    method: "POST",
-    body: {
+  axios
+    .post("/guilds", {
       userToken: token,
-    },
-  })
-    .then((res) => {
-      res.json();
     })
-    .then((res) => {
-      callback(res);
+    .then(function (response) {
+      if (response.data) {
+        callback(response.data);
+      } else {
+        callback({ error: "no data in response" });
+      }
     })
-    .catch((er) => {
-      callback({ error: er });
+    .catch(function (error) {
+      callback({ error: error });
     });
 };

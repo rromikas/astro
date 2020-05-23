@@ -2,14 +2,14 @@ import React from "react";
 import Logo from "./logo";
 import { connect, useDispatch } from "react-redux";
 import history from "../routing/history";
-import { invitationLink } from "../api/invitation";
+import { invite } from "../api/invitation";
 
 const Navbar = (props) => {
   const menuClass =
     "col-12 col-md-auto pln text-right text-md-center pl-3 crs-pntr";
   const dispatch = useDispatch();
   return (
-    <div className="container-fluid px-3 pt-3 justify-content-between align-items-center pb-0">
+    <div className="container-fluid px-3 pt-3 justify-content-between align-items-center pb-0 mb-4 mt-md-0">
       <div className="row no-gutters justify-content-between">
         <div className="col-auto pr-2 pb-2">
           <Logo onClick={() => history.push("/")}></Logo>
@@ -32,12 +32,7 @@ const Navbar = (props) => {
               My servers
             </div>
             <div className={menuClass}>
-              <div
-                className="pln"
-                onClick={() => {
-                  window.location = invitationLink;
-                }}
-              >
+              <div className="pln" onClick={() => invite(555)}>
                 Connect
               </div>
             </div>
