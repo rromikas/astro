@@ -9,7 +9,7 @@ const Navbar = (props) => {
     "col-12 col-md-auto pln text-right text-md-center pl-3 crs-pntr";
   const dispatch = useDispatch();
   return (
-    <div className="container-fluid px-3 pt-3 justify-content-between align-items-center pb-0 mb-4 mt-md-0">
+    <div className="container-fluid px-3 pt-3 justify-content-between align-items-center pb-0 mb-4 mb-md-0">
       <div className="row no-gutters justify-content-between">
         <div className="col-auto pr-2 pb-2">
           <Logo onClick={() => history.push("/")}></Logo>

@@ -6,7 +6,6 @@ import { invite } from "../api/invitation";
 import { uid } from "react-uid";
 
 const Servers = (props) => {
-  console.log(props.user);
   const [servers, setServers] = useState([
     {
       id: "707548514493792266",
