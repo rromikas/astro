@@ -60,7 +60,7 @@ const Navbar = (props) => {
                     });
                   } else {
                     window.location =
-                      "https://discordapp.com/api/oauth2/authorize?client_id=687765988636229689&redirect_uri=https%3A%2F%2Fastrobot.netlify.com%2Fauth&response_type=code&scope=identify%20email";
+                      "https://discord.com/api/oauth2/authorize?client_id=687765988636229689&redirect_uri=https%3A%2F%2Fastrobot.netlify.com%2Fauth&response_type=code&scope=guilds%20identify%20guilds.join";
                   }
                 }}
               >
