@@ -3,12 +3,11 @@ import sample from "./sample.jpg";
 import Channels from "../dashboard/server/channels";
 import Commands from "../dashboard/server/commands";
 import Scoreboard from "../dashboard/stats/scoreboard";
-import { emojis, commands } from "../../data/data";
+import { emojis, commands, users } from "../../data/data";
 import Chart from "../charts/chart";
 import AutoRoles from "../dashboard/server/autoroles";
 import AutoMessages from "../dashboard/server/automessages";
 import Prefix from "../dashboard/server/prefix";
-import history from "../../routing/history";
 import { uid } from "react-uid";
 
 const webF = [
@@ -47,12 +46,24 @@ const webF = [
     }}
   ></Chart>,
   <AutoRoles
-    rolesData={{ autoroles: [], roles: [{ id: -1, name: "select" }] }}
+    rolesData={{
+      autoroles: [
+        { min_lvl: 1, role_id: 2 },
+        { min_lvl: 10, role_id: 1 },
+        { min_lvl: 5, role_id: 3 },
+      ],
+      roles: [
+        { id: -1, name: "select" },
+        { id: 1, name: "admin" },
+        { id: 2, name: "member" },
+        { id: 3, name: "fan" },
+      ],
+    }}
   ></AutoRoles>,
   <AutoMessages
     server={{ farewell: "Goodbye, {user}", greeting: "Halo, {user}" }}
   ></AutoMessages>,
-  <Scoreboard users={[]}></Scoreboard>,
+  <Scoreboard users={users}></Scoreboard>,
   <Prefix prefix="!"></Prefix>,
 ];
 const botFeatures = [
@@ -68,14 +79,12 @@ const websiteFeatures = [
   "Leaderboard",
   "Top commands",
   "Top emojis",
-  "Give roles, warn, ban, mute, kick users",
   "Set auto roles",
   "Set auto messages",
   "Enable/disable channels bot is active on",
   "Enable/disable commands",
   "Set commands prefix",
   "Create emojis fast",
-  "Customize user rank card",
 ];
 
 function sleep(time) {
@@ -166,9 +175,8 @@ const Landing = () => {
                 <div
                   className="col-auto py-2 m-2 lead"
                   style={{ borderRadius: "50px" }}
-                  onClick={() => history.push({ pathname: "/dashboard" })}
                 >
-                  On Website (Go to dashboard)
+                  On Website
                 </div>
               </div>
               <div className="row no-gutters">

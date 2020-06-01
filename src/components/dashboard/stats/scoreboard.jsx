@@ -59,7 +59,7 @@ const Scoreboard = ({ users }) => {
                     >
                       <img
                         src={
-                          x.avatar !== ""
+                          x.avatar && x.avatar !== ""
                             ? x.avatar
                             : "https://cdn0.iconfinder.com/data/icons/free-social-media-set/24/discord-512.png"
                         }

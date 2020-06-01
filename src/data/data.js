@@ -100,23 +100,23 @@ export let users = [
 ];
 
 export let emojis = [
-  { image: emojisImg[0], times: [10, 26, 37] },
-  { image: emojisImg[1], times: [26, 10, 41] },
-  { image: emojisImg[2], times: [46, 20, 63] },
-  { image: emojisImg[3], times: [42, 35, 18] },
+  { image: emojisImg[0], uses: 5 },
+  { image: emojisImg[1], uses: 8 },
+  { image: emojisImg[2], uses: 9 },
+  { image: emojisImg[3], uses: 14 },
 ];
 
 export let commands = [
-  { name: "warn", times: [10, 26, 37], enabled: true },
-  { name: "role", times: [26, 10, 41], enabled: true },
-  { name: "mute", times: [46, 20, 63], enabled: false },
-  { name: "kick", times: [42, 35, 18], enabled: true },
-  { name: "play", times: [10, 26, 37], enabled: false },
-  { name: "user-info", times: [26, 10, 41], enabled: true },
-  { name: "unmute", times: [46, 20, 63], enabled: true },
-  { name: "ban", times: [42, 35, 18], enabled: false },
-  { name: "unban", times: [10, 26, 37], enabled: true },
-  { name: "tempmute", times: [26, 10, 41], enabled: false },
-  { name: "role-info", times: [46, 20, 63], enabled: true },
-  { name: "emoji", times: [42, 35, 18], enabled: true },
+  { name: "warn", uses: 8, enabled: true },
+  { name: "role", uses: 2, enabled: true },
+  { name: "mute", uses: 5, enabled: false },
+  { name: "kick", uses: 18, enabled: true },
+  { name: "play", uses: 25, enabled: false },
+  { name: "user-info", uses: 18, enabled: true },
+  { name: "unmute", uses: 18, enabled: true },
+  { name: "ban", uses: 18, enabled: false },
+  { name: "unban", uses: 18, enabled: true },
+  { name: "tempmute", uses: 18, enabled: false },
+  { name: "role-info", uses: 18, enabled: true },
+  { name: "emoji", uses: 18, enabled: true },
 ];
