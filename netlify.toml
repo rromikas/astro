@@ -1,0 +1,13 @@
+
+# API proxying
+[[redirects]]
+    from = "/api/*"
+    to = "http://78.63.244.233:8080/:splat"
+    status = 200
+    force = true
+
+# React Router support
+[[redirects]]
+    from = "/*"
+    to = "/index.html"
+    status = 200
