@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-let prefix = process.env.NODE_ENV === "production" ? "api" : "";
+let prefix = process.env.NODE_ENV === "production" ? "/api" : "";
 
 export const GetGuilds = (token, callback) => {
   axios
