@@ -243,7 +243,6 @@ const AutoRoles = ({ rolesData, createRole, updateRole }) => {
                             className="choice"
                             onClick={() => {
                               setRoles((rls) => {
-                                console.log(rls);
                                 let arr = [...rls.autoroles];
                                 arr[editRoles.id].min_lvl = ev.split(" ")[1];
                                 return Object.assign({}, rls, {

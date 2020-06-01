@@ -9,7 +9,6 @@ function useQuery() {
 const Auth = () => {
   let query = useQuery();
   let code = query.get("code");
-  console.log("code: ", code);
   login(code);
   history.push({ pathname: "/" });
   return <div></div>;

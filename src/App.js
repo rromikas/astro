@@ -10,8 +10,6 @@ import Dashboard from "./components/dashboard/dashboard";
 import Landing from "./components/landing/landing";
 import Servers from "./components/servers";
 
-console.log(process.env.NODE_ENV);
-
 function App() {
   return (
     <Provider store={store}>

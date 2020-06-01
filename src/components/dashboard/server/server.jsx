@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Commands from "./commands";
-import Channels from "./channels";
 import Prefix from "./prefix";
 import AutoRoles from "./autoroles";
 import AutoMessages from "./automessages";

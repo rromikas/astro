@@ -1,10 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
-// import { users } from "../../../data/data";
 import DropDown from "./dropdown";
 import PerfectScrollbar from "react-perfect-scrollbar";
 
 const Table = ({ users }) => {
-  console.log("TABLE USERS", users);
   const scrollbar = useRef(null);
   const [drop, setDrop] = useState([-1, -1]); // one drop down menu at a time on the table
 

@@ -1,13 +1,8 @@
-import React, { useState, useRef, useEffect } from "react";
-import {
-  uploadSvg,
-  getBase64Image,
-  toDataUrl,
-} from "../../utilities/htmltocanvas";
+import React, { useRef } from "react";
+import { uploadSvg } from "../../utilities/htmltocanvas";
 import font from "./fonts/LeagueSpartan-Bold.otf";
 
 const UserCard = ({ rank, username, level, xp, bg, mainColor }) => {
-  console.log("font", font);
   const card = useRef(null);
   const gradientOpacity = 0;
   return (

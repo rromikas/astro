@@ -1,8 +1,4 @@
-import FormData, { getHeaders } from "form-data";
-const svg2png = require("svg2png");
 const firebase = require("firebase");
-const Axios = require("axios").default;
-let user;
 export const initializeFirebase = () => {
   fetch("https://intelligent-fate-abrosaurus.glitch.me/firebase")
     .then((res) => res.json())
@@ -40,6 +36,9 @@ export const getBase64Image = (imgUrl) => {
       resolve(dataURL);
     };
 
+    img.onerror = function () {
+      resolve({ error: "Image url is not accessable" });
+    };
     // set attributes and src
     img.setAttribute("crossOrigin", "anonymous"); //
     img.src = imgUrl;
@@ -73,7 +72,6 @@ export const uploadPng = () => {
 };
 
 export const uploadSvg = (element) => {
-  console.log("upload svg", element);
   return new Promise((resolve, reject) => {
     let s = new XMLSerializer().serializeToString(element);
     let dataUrl = "data:image/svg+xml;base64,";

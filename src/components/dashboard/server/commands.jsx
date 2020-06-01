@@ -9,7 +9,6 @@ import {
   handleTouchMove,
   handleTouchEnd,
 } from "../utilities/events";
-// import { commands } from "../../../data/data";
 
 const Commands = ({ prefix, preview = false, commands, updateCommand }) => {
   const [move, setMove] = useState([0, 0]);

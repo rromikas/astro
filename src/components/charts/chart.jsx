@@ -34,10 +34,30 @@ const Chart = ({ data }) => {
                   <div key={`charads-${i}`} style={{ height: "37px" }}>
                     <div className="w-100 justify-content-center d-flex">
                       {x.image ? (
-                        <div style={{ width: "30px", height: "30px" }}>
+                        <div
+                          style={{
+                            width: "30px",
+                            height: "30px",
+                            overflow: "hidden",
+                          }}
+                        >
                           <img
                             alt={`chart-item-${i}`}
                             src={x.image}
+                            className="img-fluid"
+                          ></img>
+                        </div>
+                      ) : data.title === "Top Emojis" ? (
+                        <div
+                          style={{
+                            width: "30px",
+                            height: "30px",
+                            overflow: "hidden",
+                          }}
+                        >
+                          <img
+                            alt={`chart-item-${i}`}
+                            src={`https://cdn.discordapp.com/emojis/${x.id}`}
                             className="img-fluid"
                           ></img>
                         </div>

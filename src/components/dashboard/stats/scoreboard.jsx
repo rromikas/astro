@@ -1,11 +1,9 @@
 import React, { useRef, useEffect } from "react";
-// import { users } from "../../../data/data";
 import Level from "./level";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import { uid } from "react-uid";
 
 const Scoreboard = ({ users }) => {
-  console.log("USERR SCROEBOARD", users);
   const scrollbar = useRef(null);
   useEffect(() => {
     scrollbar.current.updateScroll();
@@ -22,13 +20,13 @@ const Scoreboard = ({ users }) => {
         }}
         className="w-100 h-84 px-3"
       >
-        <table className="table borderless w-100 lead">
+        <table className="table table-striped borderless w-100 lead">
           <tbody>
             {users
               .sort((a, b) => (a.exp > b.exp ? -1 : a.exp < b.exp ? 1 : 0))
               .map((x, i) => (
                 <tr className="scrbrd-row" key={uid(x)}>
-                  <td className="align-middle text-center">
+                  <td className="align-middle text-center td-left">
                     <div
                       style={{
                         width: "30px",
@@ -45,6 +43,7 @@ const Scoreboard = ({ users }) => {
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
+                        margin: "5px",
                       }}
                     >
                       {i + 1}
@@ -59,8 +58,12 @@ const Scoreboard = ({ users }) => {
                       }}
                     >
                       <img
-                        src={x.image}
-                        alt={x.image}
+                        src={
+                          x.avatar !== ""
+                            ? x.avatar
+                            : "https://cdn0.iconfinder.com/data/icons/free-social-media-set/24/discord-512.png"
+                        }
+                        alt={x.avatar}
                         className="img-fluid"
                       ></img>
                     </div>
@@ -80,7 +83,7 @@ const Scoreboard = ({ users }) => {
                       </div>
                     </div>
                   </td>
-                  <td className="align-middle d-flex justify-content-center">
+                  <td className="align-middle d-flex justify-content-center td-right">
                     <Level level={x.level} exp={x.experience}></Level>
                   </td>
                 </tr>

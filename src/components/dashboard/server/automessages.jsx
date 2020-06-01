@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PerfectScrollbar from "react-perfect-scrollbar";
-import { FaPen, FaTrash, FaCheck, FaPlus } from "react-icons/fa";
+import { FaCheck } from "react-icons/fa";
 import { getLongestWidth } from "../utilities/events";
 import { uid } from "react-uid";
 const AutoMessages = ({ server, updateMessages, setServer }) => {

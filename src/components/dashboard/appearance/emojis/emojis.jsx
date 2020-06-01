@@ -1,18 +1,12 @@
 import React, { useState, useRef } from "react";
-import a from "./samples/a.png";
-import b from "./samples/b.png";
-import c from "./samples/c.png";
-import d from "./samples/d.png";
-import e from "./samples/e.png";
-import f from "./samples/f.png";
-import g from "./samples/g.png";
-import h from "./samples/h.png";
-import i from "./samples/i.png";
-import j from "./samples/j.png";
-const Emojis = () => {
-  const [emojis, setEmojis] = useState([a, b, c, d, e, f, g, h, i, j]);
+import { getBase64Image } from "../../utilities/htmltocanvas";
+import { uid } from "react-uid";
+import MoonLoader from "react-spinners/MoonLoader";
+
+const Emojis = ({ createEmoji, deleteEmoji, emojis, setEmojis }) => {
   const [hover, setHover] = useState(-1);
-  const [url, setUrl] = useState("");
+  const [image, setImage] = useState({ isUrl: false, url: "" });
+  const [name, setName] = useState("");
   const upload = useRef(null);
   return (
     <div
@@ -25,7 +19,8 @@ const Emojis = () => {
           {emojis.map((x, i) => {
             return (
               <div
-                className="col-2 p-1"
+                key={uid(x)}
+                className="col-auto p-1"
                 style={{ position: "relative" }}
                 onMouseOver={() => {
                   setHover(i);
@@ -34,22 +29,33 @@ const Emojis = () => {
                   setHover(-1);
                 }}
               >
-                <div
-                  className="w-100 square"
-                  style={{
-                    borderRadius: "25px",
-                    backgroundImage: `url(${x})`,
-                    backgroundSize: "cover",
-                  }}
-                ></div>
+                {x.loading ? (
+                  <div
+                    className="w-100 square d-flex align-items-center justify-content-center"
+                    style={{
+                      borderRadius: "25px",
+                    }}
+                  >
+                    <MoonLoader size={30} color={"white"} loading={x.loading} />
+                  </div>
+                ) : (
+                  <div
+                    className="w-100 square"
+                    style={{
+                      borderRadius: "25px",
+                      backgroundImage: `url(https://cdn.discordapp.com/emojis/${x.id})`,
+                      backgroundSize: "cover",
+                    }}
+                  ></div>
+                )}
+
                 {hover === i && (
                   <div
                     onClick={() => {
-                      setEmojis((emj) => {
-                        let arr = [...emj];
-                        arr.splice(i, 1);
-                        return arr;
-                      });
+                      deleteEmoji(emojis[i]);
+                      let arr = [...emojis];
+                      arr.splice(i, 1);
+                      setEmojis(arr);
                     }}
                     className="w-100 h-100"
                     style={{
@@ -69,6 +75,7 @@ const Emojis = () => {
                     X
                   </div>
                 )}
+                {x.name}
               </div>
             );
           })}
@@ -76,10 +83,29 @@ const Emojis = () => {
       </div>
       <div className="col-12">
         <div className="row no-gutters">
-          <div className="col-6 p-1">
+          <div className="col-auto d-flex align-items-center p-1">Url</div>
+          <div
+            className="concave-2 w-100 px-3 col p-1"
+            style={{ height: "40px", borderRadius: "50px" }}
+          >
             <input
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
+              value={image.url.substring(0, 45)}
+              onChange={(e) => {
+                e.persist();
+                setImage((i) =>
+                  Object.assign({}, i, { isUrl: true, url: e.target.value })
+                );
+              }}
+              className="w-100 px-3"
+            ></input>
+          </div>
+        </div>
+        <div className="row no-gutters">
+          <div className="d-flex align-items-center p-1">Name</div>
+          <div className="col p-1">
+            <input
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               className="concave-2 w-100 px-3"
               style={{ height: "40px", borderRadius: "50px" }}
             ></input>
@@ -88,12 +114,48 @@ const Emojis = () => {
           <div className="col-3 p-1">
             <div
               onClick={() => {
-                setEmojis((emj) => {
-                  let arr = [...emj];
-                  arr[arr.length] = url;
-                  return arr;
-                });
-                setUrl("");
+                if (name.includes(" ")) {
+                  alert("Name can not contain spaces");
+                } else if (name !== "" && image.url !== "") {
+                  if (image.isUrl) {
+                    getBase64Image(image.url).then((data) => {
+                      if (data.error) {
+                        alert(data.error);
+                      } else {
+                        let arr = [...emojis];
+                        arr[arr.length] = { id: -1, loading: true };
+                        setEmojis(arr);
+                        createEmoji(
+                          {
+                            name: name,
+                            image: data.replace("data:image/png;base64,", ""),
+                          },
+                          (res) => {
+                            let arr = [...emojis];
+                            arr[arr.length] = res;
+                            setEmojis(arr);
+                          }
+                        );
+                      }
+                    });
+                  } else {
+                    createEmoji(
+                      {
+                        name: name,
+                        image: image.url.replace("data:image/png;base64,", ""),
+                      },
+                      (res) => {
+                        let arr = [...emojis];
+                        arr[arr.length] = res;
+                        setEmojis(arr);
+                      }
+                    );
+                  }
+
+                  setImage({ isUrl: true, url: "" });
+                } else {
+                  alert("fill all fields");
+                }
               }}
               className="w-100 d-flex align-items-center justify-content-center convex-2"
               style={{
@@ -127,16 +189,11 @@ const Emojis = () => {
                 reader.addEventListener(
                   "load",
                   function () {
-                    setEmojis((emj) => {
-                      let arr = [...emj];
-                      arr[arr.length] = reader.result;
-                      return arr;
-                    });
+                    setImage({ isUrl: false, url: reader.result });
                   },
                   false
                 );
                 let file = e.target.files[0];
-                console.log(file);
                 if (file) {
                   if (file.type.includes("image")) {
                     if (file.size < 10000000) {

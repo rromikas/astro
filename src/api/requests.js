@@ -1,14 +1,15 @@
 const axios = require("axios");
 
+let prefix = process.env.NODE_ENV === "production" ? "api" : "";
+
 export const GetGuilds = (token, callback) => {
   axios
-    .get("/api/guilds", {
+    .get(`${prefix}/guilds`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
     .then(function (response) {
-      console.log("response GUIDLS", response);
       if (response.data) {
         callback(response.data);
       } else {
@@ -22,7 +23,7 @@ export const GetGuilds = (token, callback) => {
 
 export const GetGuild = (token, guildId, callback) => {
   axios
-    .get(`/api/guilds/${guildId}`, {
+    .get(`${prefix}/guilds/${guildId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -41,7 +42,7 @@ export const GetGuild = (token, guildId, callback) => {
 
 export const GetAutoRoles = (token, guildId, callback) => {
   axios
-    .get(`/api/guilds/${guildId}/autoroles`, {
+    .get(`${prefix}/guilds/${guildId}/autoroles`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -60,7 +61,7 @@ export const GetAutoRoles = (token, guildId, callback) => {
 
 export const GetRoles = (token, guildId, callback) => {
   axios
-    .get(`/api/guilds/${guildId}/roles`, {
+    .get(`${prefix}/guilds/${guildId}/roles`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -79,7 +80,7 @@ export const GetRoles = (token, guildId, callback) => {
 
 export const GetMembers = (token, guildId, callback) => {
   axios
-    .get(`/api/guilds/${guildId}/members`, {
+    .get(`${prefix}/guilds/${guildId}/members`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -98,7 +99,7 @@ export const GetMembers = (token, guildId, callback) => {
 
 export const GetEnabledCommands = (token, guildId, callback) => {
   axios
-    .get(`/api/guilds/${guildId}/enabled-commands`, {
+    .get(`${prefix}/guilds/${guildId}/enabled-commands`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -117,7 +118,7 @@ export const GetEnabledCommands = (token, guildId, callback) => {
 
 export const GetCommands = (token, guildId, callback) => {
   axios
-    .get(`/api/guilds/${guildId}/commands`, {
+    .get(`${prefix}/guilds/${guildId}/commands`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -136,7 +137,7 @@ export const GetCommands = (token, guildId, callback) => {
 
 export const GetChannels = (token, guildId, callback) => {
   axios
-    .get(`/api/guilds/${guildId}/channels`, {
+    .get(`${prefix}/guilds/${guildId}/channels`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -155,13 +156,12 @@ export const GetChannels = (token, guildId, callback) => {
 
 export const GetEmojis = (token, guildId, callback) => {
   axios
-    .get(`/api/guilds/${guildId}/emojis`, {
+    .get(`${prefix}/guilds/${guildId}/emojis`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
     .then((response) => {
-      console.log("EMOJIS RESPONSE IN API FILE", response);
       if (response.data !== null) {
         callback(response.data);
       } else {
@@ -175,14 +175,12 @@ export const GetEmojis = (token, guildId, callback) => {
 
 export const UpdateGuildInfo = (token, guildId, guild, callback) => {
   axios
-    .patch(`/api/guilds/${guildId}`, guild, {
+    .patch(`${prefix}/guilds/${guildId}`, guild, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
-    .then((response) => {
-      console.log("Response after guild info update", response);
-    })
+    .then((response) => {})
     .catch(function (error) {
       callback({ error: "can't update info", fullError: error });
     });
@@ -190,14 +188,12 @@ export const UpdateGuildInfo = (token, guildId, guild, callback) => {
 
 export const UpdateChannel = (token, guildId, channel, callback) => {
   axios
-    .patch(`/api/guilds/${guildId}/channels/${channel.id}`, channel, {
+    .patch(`${prefix}/guilds/${guildId}/channels/${channel.id}`, channel, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
-    .then((response) => {
-      console.log("Response after channels update", response);
-    })
+    .then((response) => {})
     .catch(function (error) {
       callback({ error: "can't update info", fullError: error });
     });
@@ -205,14 +201,12 @@ export const UpdateChannel = (token, guildId, channel, callback) => {
 
 export const UpdateCommands = (token, guildId, command, callback) => {
   axios
-    .patch(`/api/guilds/${guildId}/commands`, [command], {
+    .patch(`${prefix}/guilds/${guildId}/commands`, [command], {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
-    .then((response) => {
-      console.log("Response after channels update", response);
-    })
+    .then((response) => {})
     .catch(function (error) {
       callback({ error: "can't update info", fullError: error });
     });
@@ -221,7 +215,7 @@ export const UpdateCommands = (token, guildId, command, callback) => {
 export const CreateAutorole = (token, guildId, role, callback) => {
   role.guild_id = guildId;
   axios
-    .put(`/api/guilds/${guildId}/autoroles/${role.role_id}`, role, {
+    .put(`${prefix}/guilds/${guildId}/autoroles/${role.role_id}`, role, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -237,7 +231,37 @@ export const CreateAutorole = (token, guildId, role, callback) => {
 export const UpdateAutorole = (token, guildId, role, callback) => {
   role.guild_id = guildId;
   axios
-    .patch(`/api/guilds/${guildId}/autoroles/${role.role_id}`, role, {
+    .patch(`${prefix}/guilds/${guildId}/autoroles/${role.role_id}`, role, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => {
+      callback(response);
+    })
+    .catch(function (error) {
+      callback({ error: "can't update info", fullError: error });
+    });
+};
+
+export const CreateEmoji = (token, guildId, emoji, callback) => {
+  axios
+    .put(`${prefix}/guilds/${guildId}/emoji`, emoji, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => {
+      callback(response);
+    })
+    .catch(function (error) {
+      callback({ error: "can't update info", fullError: error });
+    });
+};
+
+export const DeleteEmoji = (token, guildId, emoji, callback) => {
+  axios
+    .delete(`${prefix}/guilds/${guildId}/emojis/${emoji.id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

@@ -1,8 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import UserCard from "./usercard";
 import { uid } from "react-uid";
 const UserInfo = () => {
-  const card = useRef(null);
   const uploadBg = useRef(null);
   const urls = [
     "https://i.ibb.co/zs7C1gH/Screenshot-3.jpg",
@@ -20,9 +19,6 @@ const UserInfo = () => {
   ];
   const [mainBg, setmainBg] = useState(urls[0]);
   const [mainColor, setMainColor] = useState(colors[0]);
-  useEffect(() => {
-    console.log("svg card", card.current);
-  }, []);
   return (
     <div className="pnl convex-1 row no-gutters px-4 py-4 pt-4 h-100">
       <div className="text-center lead col-12 mb-4">User Rank Card</div>
@@ -107,6 +103,7 @@ const UserInfo = () => {
           {colors.map((x) => {
             return (
               <div
+                key={uid(x)}
                 className="col-1 square"
                 onClick={() => setMainColor(x)}
                 style={{

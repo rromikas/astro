@@ -1,5 +1,4 @@
 import React from "react";
-// import { emojis, commands } from "../../../data/data";
 import Scoreboard from "./scoreboard";
 import Chart from "../../charts/chart";
 const Stats = ({ users, commands, emojis }) => {

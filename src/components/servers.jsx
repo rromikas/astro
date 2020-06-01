@@ -8,14 +8,18 @@ import { uid } from "react-uid";
 const Servers = (props) => {
   const [servers, setServers] = useState([]);
   useEffect(() => {
-    GetGuilds(props.user.token, (res) => {
-      console.log("SERVERIAI", res);
-      if (res.error) {
-        console.log(res.error);
-      } else {
-        setServers(res);
+    GetGuilds(
+      process.env.NODE_ENV === "production"
+        ? props.user.token
+        : "5nYrFjAif5x5E4VT6bRbfJuv2jc80e",
+      (res) => {
+        if (res.error) {
+          console.log(res.error);
+        } else {
+          setServers(res);
+        }
       }
-    });
+    );
   }, [props.user]);
 
   return (

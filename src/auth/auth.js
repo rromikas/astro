@@ -21,8 +21,6 @@ export const login = (code) => {
 
 export const getUser = (token) => {
   oauth.getUser(token).then((obj) => {
-    console.log("user from discord", obj);
-    console.log("user token: ", token);
     obj.token = token;
     store.dispatch({ type: "SET_USER", user: obj });
   });

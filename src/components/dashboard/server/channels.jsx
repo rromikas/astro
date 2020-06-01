@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import PerfectScrollbar from "react-perfect-scrollbar";
-import { uploadSvg, readFiles, uploadPng } from "../utilities/htmltocanvas";
 import {
   onMD,
   onML,
@@ -10,9 +9,8 @@ import {
   handleTouchMove,
   handleTouchEnd,
 } from "../utilities/events";
-// import { channels } from "../../../data/data";
 
-const Channels = ({ prefix, preview = false, channels, updateChannel }) => {
+const Channels = ({ preview = false, channels, updateChannel }) => {
   const [move, setMove] = useState([0, 0]);
   const scrollbar = useRef(null);
   useEffect(() => {

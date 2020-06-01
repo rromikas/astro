@@ -1,7 +1,7 @@
 import React from "react";
 import MoonLoader from "react-spinners/MoonLoader";
 
-const Navbar = ({ setMain, main, server }) => {
+const Navbar = ({ setMain, main, server, loadedContent }) => {
   return (
     <div className="row no-gutters">
       <div className="col-12 col-md p-1 mb-2" style={{ height: "60px" }}>
@@ -18,7 +18,7 @@ const Navbar = ({ setMain, main, server }) => {
             }}
           >
             <div style={{ display: "flex", alignItems: "center" }}>
-              {server.loading ? (
+              {loadedContent < 6 && !server.error ? (
                 <MoonLoader
                   size={20}
                   color={"white"}
