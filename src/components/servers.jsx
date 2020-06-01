@@ -36,8 +36,7 @@ const Servers = (props) => {
     },
   ]);
   useEffect(() => {
-    // props.user.token <----- tikras tokenas
-    GetGuilds("5nYrFjAif5x5E4VT6bRbfJuv2jc80e", (res) => {
+    GetGuilds(props.user.token, (res) => {
       console.log("SERVERIAI", res);
       if (res.error) {
         console.log(res.error);
