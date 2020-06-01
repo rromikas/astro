@@ -6,35 +6,7 @@ import { invite } from "../api/invitation";
 import { uid } from "react-uid";
 
 const Servers = (props) => {
-  const [servers, setServers] = useState([
-    {
-      id: "707548514493792266",
-      name: "Andrius's server",
-      icon: "",
-      owner: true,
-      permissions: 2147483647,
-      features: [],
-      bot: true,
-    },
-    {
-      id: "713791617714094102",
-      name: "Andrius's server2",
-      icon: "",
-      owner: true,
-      permissions: 2147483647,
-      features: [],
-      bot: false,
-    },
-    {
-      id: "713791643957854348",
-      name: "Andrius's server3",
-      icon: "",
-      owner: true,
-      permissions: 2147483647,
-      features: [],
-      bot: false,
-    },
-  ]);
+  const [servers, setServers] = useState([]);
   useEffect(() => {
     GetGuilds(props.user.token, (res) => {
       console.log("SERVERIAI", res);
