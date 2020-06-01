@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getGuilds } from "../api/requests";
+import { GetGuilds } from "../api/requests";
 import { connect } from "react-redux";
 import history from "../routing/history";
 import { invite } from "../api/invitation";
@@ -14,7 +14,7 @@ const Servers = (props) => {
       owner: true,
       permissions: 2147483647,
       features: [],
-      botExists: true,
+      bot: true,
     },
     {
       id: "713791617714094102",
@@ -23,7 +23,7 @@ const Servers = (props) => {
       owner: true,
       permissions: 2147483647,
       features: [],
-      botExists: false,
+      bot: false,
     },
     {
       id: "713791643957854348",
@@ -32,11 +32,13 @@ const Servers = (props) => {
       owner: true,
       permissions: 2147483647,
       features: [],
-      botExists: false,
+      bot: false,
     },
   ]);
   useEffect(() => {
-    getGuilds(props.user.token, (res) => {
+    // props.user.token <----- tikras tokenas
+    GetGuilds("5nYrFjAif5x5E4VT6bRbfJuv2jc80e", (res) => {
+      console.log("SERVERIAI", res);
       if (res.error) {
         console.log(res.error);
       } else {
@@ -47,7 +49,7 @@ const Servers = (props) => {
 
   return (
     <div className="w-100 h-100 d-flex justify-content-center align-items-center p-4">
-      {props.user.username === "" ? (
+      {props.user.username === "" && false ? (
         <div className="lead">Login to view your servers</div>
       ) : (
         <div
@@ -66,10 +68,10 @@ const Servers = (props) => {
                       <tr style={{ borderRadius: "40px" }} key={uid(x)}>
                         <td className="text-center lead">{x.name}</td>
                         <td className="d-flex justify-content-center">
-                          {x.botExists ? (
+                          {x.bot ? (
                             <div
                               onClick={() =>
-                                history.push("/dashboard", { server: x.name })
+                                history.push(`/servers/${x.id}/dashboard`)
                               }
                               className="convex-2 py-2 px-4 enbl-btn lead"
                               style={{

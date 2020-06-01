@@ -16,7 +16,11 @@ function App() {
       <Navbar></Navbar>
       <Router history={history}>
         <Switch>
-          <Route exact path="/dashboard" component={Dashboard}></Route>
+          <Route
+            exact
+            path="/servers/:serverId/dashboard"
+            component={Dashboard}
+          ></Route>
           <Route exact path="/" component={Landing}></Route>
           <Route exact path="/auth" component={Auth} />
           <Route exact path="/servers" component={Servers}></Route>

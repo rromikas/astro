@@ -1,4 +1,5 @@
 import React from "react";
+import MoonLoader from "react-spinners/MoonLoader";
 
 const Navbar = ({ setMain, main, server }) => {
   return (
@@ -17,16 +18,24 @@ const Navbar = ({ setMain, main, server }) => {
             }}
           >
             <div style={{ display: "flex", alignItems: "center" }}>
-              <div
-                className="enbl-btn mr-2"
-                style={{
-                  width: "15px",
-                  height: "15px",
-                  marginRight: "10px",
-                  borderRadius: "50%",
-                }}
-              ></div>
-              {server}
+              {server.loading ? (
+                <MoonLoader
+                  size={20}
+                  color={"white"}
+                  loading={server.loading}
+                />
+              ) : (
+                <div
+                  className={`${server.error ? "dsbl" : "enbl"}-btn mr-2`}
+                  style={{
+                    width: "15px",
+                    height: "15px",
+                    marginRight: "10px",
+                    borderRadius: "50%",
+                  }}
+                ></div>
+              )}
+              {server.error ? server.error : server.name}
             </div>
             <div>Dashboard</div>
           </div>

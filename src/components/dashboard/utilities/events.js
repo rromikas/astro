@@ -2,7 +2,7 @@ let start,
   move = [],
   letMove = false;
 
-export const onMU = (e, chnl, setState) => {
+export const onMU = (e, chnl, setState, onTurn) => {
   letMove = false;
   let parent = e.currentTarget.parentNode;
   let pos = parent.getBoundingClientRect();
@@ -12,13 +12,15 @@ export const onMU = (e, chnl, setState) => {
     pos.right - pos.left - Math.abs(move[1]) - target.right + target.left
   ) {
     if (parent.style.justifyContent === "flex-start") {
-      parent.style.justifyContent = "flex-end";
-      e.currentTarget.classList.remove("enbl-btn");
-      e.currentTarget.classList.add("dsbl-btn");
+      // parent.style.justifyContent = "flex-end";
+      // e.currentTarget.classList.remove("enbl-btn");
+      // e.currentTarget.classList.add("dsbl-btn");
+      onTurn(false);
     } else {
-      parent.style.justifyContent = "flex-start";
-      e.currentTarget.classList.remove("dsbl-btn");
-      e.currentTarget.classList.add("enbl-btn");
+      // parent.style.justifyContent = "flex-start";
+      // e.currentTarget.classList.remove("dsbl-btn");
+      // e.currentTarget.classList.add("enbl-btn");
+      onTurn(true);
     }
     move = [chnl, 0];
     setState([chnl, 0]);

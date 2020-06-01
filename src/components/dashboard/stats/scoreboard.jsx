@@ -1,10 +1,11 @@
 import React, { useRef, useEffect } from "react";
-import { users } from "../../../data/data";
+// import { users } from "../../../data/data";
 import Level from "./level";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import { uid } from "react-uid";
 
-const Scoreboard = () => {
+const Scoreboard = ({ users }) => {
+  console.log("USERR SCROEBOARD", users);
   const scrollbar = useRef(null);
   useEffect(() => {
     scrollbar.current.updateScroll();
@@ -74,13 +75,13 @@ const Scoreboard = () => {
                           justifyContent: "space-between",
                         }}
                       >
-                        <div style={{ marginRight: "5px" }}>{x.name}</div>
-                        <div> Exp: {x.exp}</div>
+                        <div style={{ marginRight: "5px" }}>{x.username}</div>
+                        <div> Exp: {x.experience}</div>
                       </div>
                     </div>
                   </td>
                   <td className="align-middle d-flex justify-content-center">
-                    <Level level={x.level} exp={x.exp}></Level>
+                    <Level level={x.level} exp={x.experience}></Level>
                   </td>
                 </tr>
               ))}

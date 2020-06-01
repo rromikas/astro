@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaPen, FaCheck } from "react-icons/fa";
-const Prefix = ({ setPrefix, prefix }) => {
+const Prefix = ({ setPrefix, prefix, savePrefix }) => {
   const [edit, setEdit] = useState(false);
   return (
     <div className="row no-gutters h-100" style={{ maxWidth: "270px" }}>
@@ -12,6 +12,7 @@ const Prefix = ({ setPrefix, prefix }) => {
       <div className="col-md-12 h-70 p-2">
         <div className="concave-1 pnl align-items-center justify-content-center display-4 shn">
           <FaPen
+            fontSize="20px"
             onClick={(e) => {
               setEdit(true);
               e.currentTarget.nextSibling.nextSibling.focus();
@@ -20,26 +21,25 @@ const Prefix = ({ setPrefix, prefix }) => {
               position: "absolute",
               top: "30px",
               right: "30px",
-              fontSize: "20px",
               color: "white",
               display: edit ? "none" : "block",
             }}
           ></FaPen>
           <FaCheck
-            onClick={() => setEdit(false)}
+            fontSize="20px"
+            onClick={() => {
+              setEdit(false);
+              savePrefix();
+            }}
             style={{
               position: "absolute",
               top: "30px",
               right: "30px",
-              fontSize: "20px",
               color: "white",
               display: edit ? "block" : "none",
             }}
           ></FaCheck>
-
           <input
-            onBlur={() => setEdit(false)}
-            onFocus={() => setEdit(true)}
             className="prfx-inpt selectDisable"
             type="text"
             value={prefix}

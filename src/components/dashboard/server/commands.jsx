@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import PerfectScrollbar from "react-perfect-scrollbar";
-import { uploadSvg, readFiles, uploadPng } from "../utilities/htmltocanvas";
 import {
   onMD,
   onML,
@@ -10,8 +9,9 @@ import {
   handleTouchMove,
   handleTouchEnd,
 } from "../utilities/events";
-import { commands } from "../../../data/data";
-const CommandsStatus = ({ prefix, preview = false }) => {
+// import { commands } from "../../../data/data";
+
+const Commands = ({ prefix, preview = false, commands, updateCommand }) => {
   const [move, setMove] = useState([0, 0]);
   const scrollbar = useRef(null);
   useEffect(() => {
@@ -52,7 +52,14 @@ const CommandsStatus = ({ prefix, preview = false }) => {
                     >
                       <div
                         onMouseDown={(e) => onMD(e, x.name)}
-                        onMouseUp={(e) => onMU(e, x.name, setMove)}
+                        onMouseUp={(e) =>
+                          onMU(e, x.name, setMove, (enabled) => {
+                            let updatedCommand = Object.assign({}, x, {
+                              enabled: enabled,
+                            });
+                            updateCommand(updatedCommand);
+                          })
+                        }
                         onMouseMove={(e) => onMM(e, x.name, setMove)}
                         onMouseLeave={() => onML(setMove)}
                         onTouchStart={(e) => handleTouchStart(e, x.name)}
@@ -79,4 +86,4 @@ const CommandsStatus = ({ prefix, preview = false }) => {
   );
 };
 
-export default CommandsStatus;
+export default Commands;

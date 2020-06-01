@@ -5,35 +5,27 @@ import { useState, useEffect } from "react";
 import { getLongestWidth } from "../utilities/events";
 import AutosizeInput from "react-input-autosize";
 import { uid } from "react-uid";
-const AutoRoles = () => {
-  const allRoles = ["Guest", "Fan", "Memeber", "Admin"];
-  const allEvents = ["Join", "Level X"];
-  const [autoroles, setAutoroles] = useState([
-    {
-      on: { current: "Join", choice: allEvents },
-      role: { current: "Guest", choice: allRoles },
-    },
-    {
-      on: { current: "Level 3", choice: allEvents },
-      role: { current: "Fan", choice: allRoles },
-    },
-    {
-      on: { current: "Level 10", choice: allEvents },
-      role: { current: "Member", choice: allRoles },
-    },
-  ]);
+const AutoRoles = ({ rolesData, createRole, updateRole }) => {
+  const [roles, setRoles] = useState({
+    autoroles: [],
+    roles: [],
+  });
 
   const [editRoles, setEditRoles] = useState({
     id: -1,
     show: false,
     type: "wait",
+    newRole: false,
   });
+
   const [longCols, setLongCols] = useState([0, 0]);
   useEffect(() => {
-    let eventsLength = getLongestWidth(allEvents);
-    let rolesLength = getLongestWidth(allRoles);
+    rolesData.roles.push({ id: -1, name: "select" });
+    setRoles(rolesData);
+    let eventsLength = getLongestWidth(["Level X"]);
+    let rolesLength = getLongestWidth([...roles.roles.map((x) => x.name)]);
     setLongCols([eventsLength, rolesLength]);
-  }, []);
+  }, [rolesData]);
 
   return (
     <div className="w-100 py-4 px-4" style={{ position: "relative" }}>
@@ -41,17 +33,22 @@ const AutoRoles = () => {
       {editRoles.type === "wait" ? (
         <div
           onClick={(e) => {
-            let index = autoroles.length;
-            setAutoroles((roles) => {
-              let arr = [...roles];
-              arr[index] = {
-                on: { current: "select" },
-                role: { current: "select" },
-              };
-              return arr;
+            let index = roles.autoroles.length;
+            setRoles((rls) => {
+              let arr = [...rls.autoroles];
+              arr.unshift({
+                min_lvl: "X",
+                role_id: -1,
+              });
+              return Object.assign({}, rls, { autoroles: arr });
             });
             setEditRoles((edit) =>
-              Object.assign({}, edit, { type: "edit", id: index, show: true })
+              Object.assign({}, edit, {
+                type: "edit",
+                id: 0,
+                show: true,
+                newRole: true,
+              })
             );
           }}
           style={{
@@ -73,7 +70,25 @@ const AutoRoles = () => {
       ) : (
         <div
           onClick={() => {
-            setEditRoles((edit) => Object.assign({}, edit, { type: "wait" }));
+            if (
+              roles.autoroles[editRoles.id].min_lvl === "X" ||
+              roles.autoroles[editRoles.id].role_id === -1
+            ) {
+              setRoles((rls) => {
+                let arr = [...rls.autoroles];
+                arr.splice(editRoles.id, 1);
+                return Object.assign({}, rls, { autoroles: arr });
+              });
+            } else {
+              if (editRoles.newRole) {
+                createRole(roles.autoroles[editRoles.id]);
+              } else {
+                updateRole(roles.autoroles[editRoles.id]);
+              }
+            }
+            setEditRoles((edit) =>
+              Object.assign({}, edit, { type: "wait", newRole: false })
+            );
           }}
           style={{
             position: "absolute",
@@ -95,10 +110,10 @@ const AutoRoles = () => {
       {editRoles.type !== "wait" && (
         <div
           onClick={() => {
-            setAutoroles((roles) => {
-              let arr = [...roles];
+            setRoles((rls) => {
+              let arr = [...rls.autoroles];
               arr.splice(editRoles.id, 1);
-              return arr;
+              return Object.assign({}, rls, { autoroles: arr });
             });
             setEditRoles((edit) =>
               Object.assign({}, edit, {
@@ -143,7 +158,8 @@ const AutoRoles = () => {
                   Edit
                 </td> */}
               </tr>
-              {autoroles.map((x, i) => {
+
+              {roles.autoroles.map((x, i) => {
                 return (
                   <tr
                     key={uid(x)}
@@ -158,41 +174,10 @@ const AutoRoles = () => {
                       )
                     }
                   >
-                    {Object.keys(x).map((key) => {
-                      return (
-                        <td style={{ padding: "7px" }} key={uid(key)}>
-                          {key !== "edit" ? (
-                            x[key].current
-                          ) : (
-                            <div>
-                              <FaPen
-                                fontSize="18"
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  setEditRoles((edit) =>
-                                    Object.assign({}, edit, {
-                                      id: i,
-                                      type: "edit",
-                                    })
-                                  );
-                                }}
-                              ></FaPen>
-                              <FaTrash
-                                fontSize="18"
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  setAutoroles((autoroles) => {
-                                    let arr = [...autoroles];
-                                    arr.splice(i, 1);
-                                    return arr;
-                                  });
-                                }}
-                              ></FaTrash>
-                            </div>
-                          )}
-                        </td>
-                      );
-                    })}
+                    <td style={{ padding: "7px" }}>{"Level " + x.min_lvl}</td>
+                    <td style={{ padding: "7px" }}>
+                      {roles.roles.find((r) => r.id === x.role_id).name}
+                    </td>
                   </tr>
                 );
               })}
@@ -200,7 +185,7 @@ const AutoRoles = () => {
           </table>
         ) : editRoles.type === "edit" ? (
           <table className="table borderless w-100 lead">
-            {autoroles[editRoles.id] ? (
+            {roles.autoroles[editRoles.id] ? (
               <tbody>
                 <tr style={{ borderBottom: "1px solid white" }}>
                   <td scope="col" style={{ padding: 0 }}>
@@ -212,64 +197,34 @@ const AutoRoles = () => {
                 </tr>
 
                 <tr>
-                  {Object.keys(autoroles[editRoles.id]).map((key) => {
-                    return (
-                      <td style={{ padding: "5px" }}>
-                        {key === "save" ? (
-                          <div
-                            style={{
-                              display: "flex",
-                              justifyContent: "space-around",
-                              padding: "5px 0px",
-                            }}
-                          >
-                            <FaCheck
-                              onClick={() => {
-                                setEditRoles((edit) =>
-                                  Object.assign({}, edit, { type: "wait" })
-                                );
-                              }}
-                            ></FaCheck>
-                            <FaTrash
-                              onClick={() => {
-                                setAutoroles((roles) => {
-                                  let arr = [...roles];
-                                  arr.splice(editRoles.id, 1);
-                                  return arr;
-                                });
-                                setEditRoles((edit) =>
-                                  Object.assign({}, edit, {
-                                    type: "wait",
-                                    show: false,
-                                    id: -1,
-                                  })
-                                );
-                              }}
-                            ></FaTrash>
-                          </div>
-                        ) : (
-                          <AutosizeInput
-                            name="form-field-name"
-                            value={autoroles[editRoles.id][key].current}
-                            style={{
-                              backgroundColor: "transparent",
-                              border: "none",
-                              outline: "none",
-                            }}
-                            onChange={function (event) {
-                              // event.target.value contains the new value
-                              setAutoroles((roles) => {
-                                let arr = [...roles];
-                                arr[editRoles.id][key].current =
-                                  event.target.value;
-                                return arr;
-                              });
-                            }}
-                          />
-                        )}
-                      </td>
-                    );
-                  })}
+                  <td style={{ padding: "5px" }}>
+                    <AutosizeInput
+                      name="form-field-name"
+                      value={"Level " + roles.autoroles[editRoles.id]?.min_lvl}
+                      style={{
+                        backgroundColor: "transparent",
+                        border: "none",
+                        outline: "none",
+                      }}
+                      onChange={function (event) {
+                        // event.target.value contains the new value
+                        let parts = event?.target?.value.split(" ");
+                        setRoles((rls) => {
+                          let arr = [...rls.autoroles];
+                          arr[editRoles.id].min_lvl =
+                            parts.length === 2 ? +parts[1] : 0;
+                          return Object.assign({}, rls, { autoroles: arr });
+                        });
+                      }}
+                    />
+                  </td>
+                  <td style={{ padding: "5px" }}>
+                    {
+                      roles.roles.find(
+                        (r) => r.id === roles.autoroles[editRoles.id].role_id
+                      ).name
+                    }
+                  </td>
                 </tr>
                 <tr style={{ overflow: "hidden" }}>
                   <td style={{ height: "104px", padding: "5px" }}>
@@ -281,16 +236,19 @@ const AutoRoles = () => {
                       className="concave-2 rounded"
                       style={{ minWidth: `${longCols[0] + 50}px` }}
                     >
-                      {allEvents.map((ev) => {
+                      {["Level X"].map((ev) => {
                         return (
                           <div
+                            key={uid(ev)}
                             className="choice"
                             onClick={() => {
-                              setAutoroles((roles) => {
-                                console.log(roles);
-                                let arr = [...roles];
-                                arr[editRoles.id].on.current = ev;
-                                return arr;
+                              setRoles((rls) => {
+                                console.log(rls);
+                                let arr = [...rls.autoroles];
+                                arr[editRoles.id].min_lvl = ev.split(" ")[1];
+                                return Object.assign({}, rls, {
+                                  autoroles: arr,
+                                });
                               });
                             }}
                           >
@@ -306,23 +264,27 @@ const AutoRoles = () => {
                       style={{ minWidth: `${longCols[1] + 50}px` }}
                       className="concave-2 rounded"
                     >
-                      {allRoles.map((role) => {
-                        return (
-                          <div
-                            onClick={() => {
-                              setAutoroles((roles) => {
-                                console.log(roles);
-                                let arr = [...roles];
-                                arr[editRoles.id].role.current = role;
-                                return arr;
-                              });
-                            }}
-                            className="choice"
-                          >
-                            {role}
-                          </div>
-                        );
-                      })}
+                      {roles.roles
+                        .slice(0, roles.roles.length - 1)
+                        .map((role) => {
+                          return (
+                            <div
+                              key={uid(role)}
+                              onClick={() => {
+                                setRoles((rls) => {
+                                  let arr = [...rls.autoroles];
+                                  arr[editRoles.id].role_id = role.id;
+                                  return Object.assign({}, rls, {
+                                    autoroles: arr,
+                                  });
+                                });
+                              }}
+                              className="choice"
+                            >
+                              {role.name}
+                            </div>
+                          );
+                        })}
                     </PerfectScrollbar>
                   </td>
                 </tr>

@@ -12,8 +12,26 @@ import history from "../../routing/history";
 import { uid } from "react-uid";
 
 const webF = [
-  <Commands prefix="!" preview></Commands>,
-  <Channels preview></Channels>,
+  <Commands
+    prefix="!"
+    preview
+    commands={[
+      { name: "warn", enabled: true },
+      { name: "mute", enabled: true },
+      { name: "ban", enabled: false },
+      { name: "kick", enabled: false },
+      { name: "unmute", enabled: true },
+      { name: "role", enabled: false },
+    ]}
+  ></Commands>,
+  <Channels
+    preview
+    channels={[
+      { name: "Voice", ignore: false },
+      { name: "General", ignore: true },
+      { name: "Music", ignore: false },
+    ]}
+  ></Channels>,
   <Chart
     data={{
       title: "Top Emojis",
@@ -28,9 +46,13 @@ const webF = [
       items: commands.slice(0, 4),
     }}
   ></Chart>,
-  <AutoRoles></AutoRoles>,
-  <AutoMessages></AutoMessages>,
-  <Scoreboard></Scoreboard>,
+  <AutoRoles
+    rolesData={{ autoroles: [], roles: [{ id: -1, name: "select" }] }}
+  ></AutoRoles>,
+  <AutoMessages
+    server={{ farewell: "Goodbye, {user}", greeting: "Halo, {user}" }}
+  ></AutoMessages>,
+  <Scoreboard users={[]}></Scoreboard>,
   <Prefix prefix="!"></Prefix>,
 ];
 const botFeatures = [

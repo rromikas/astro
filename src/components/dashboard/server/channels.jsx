@@ -10,8 +10,9 @@ import {
   handleTouchMove,
   handleTouchEnd,
 } from "../utilities/events";
-import { channels } from "../../../data/data";
-const Channels = ({ prefix, preview = false }) => {
+// import { channels } from "../../../data/data";
+
+const Channels = ({ prefix, preview = false, channels, updateChannel }) => {
   const [move, setMove] = useState([0, 0]);
   const scrollbar = useRef(null);
   useEffect(() => {
@@ -50,12 +51,19 @@ const Channels = ({ prefix, preview = false }) => {
                       <div
                         className="pnl concave-2"
                         style={{
-                          justifyContent: x.enabled ? "flex-start" : "flex-end",
+                          justifyContent: !x.ignore ? "flex-start" : "flex-end",
                         }}
                       >
                         <div
                           onMouseDown={(e) => onMD(e, x.name)}
-                          onMouseUp={(e) => onMU(e, x.name, setMove)}
+                          onMouseUp={(e) =>
+                            onMU(e, x.name, setMove, (enabled) => {
+                              let updatedChannel = Object.assign({}, x, {
+                                ignore: !enabled,
+                              });
+                              updateChannel(updatedChannel);
+                            })
+                          }
                           onMouseMove={(e) => onMM(e, x.name, setMove)}
                           onMouseLeave={() => onML(setMove)}
                           onTouchStart={(e) => handleTouchStart(e, x.name)}
@@ -64,7 +72,7 @@ const Channels = ({ prefix, preview = false }) => {
                           }
                           onTouchEnd={(e) => handleTouchEnd(e, x.name, setMove)}
                           className={`pnl w-65 convex-2 ${
-                            x.enabled ? "enbl-btn" : "dsbl-btn"
+                            !x.ignore ? "enbl-btn" : "dsbl-btn"
                           }`}
                           style={{
                             transform: `translateX(${

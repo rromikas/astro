@@ -1,8 +1,8 @@
 import React from "react";
-import { emojis, commands } from "../../../data/data";
+// import { emojis, commands } from "../../../data/data";
 import Scoreboard from "./scoreboard";
 import Chart from "../../charts/chart";
-const Stats = () => {
+const Stats = ({ users, commands, emojis }) => {
   return (
     <div className="row no-gutters">
       <div
@@ -10,7 +10,7 @@ const Stats = () => {
         style={{ height: "600px" }}
       >
         <div className="pnl convex-1 shn">
-          <Scoreboard></Scoreboard>
+          <Scoreboard users={users}></Scoreboard>
         </div>
       </div>
       <div className="col-12 col-md-6">
@@ -37,7 +37,7 @@ const Stats = () => {
               data={{
                 title: "Top Commands",
                 units: "times",
-                items: commands.slice(0, 4),
+                items: commands,
               }}
             ></Chart>
           </div>
