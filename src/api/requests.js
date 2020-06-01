@@ -2,7 +2,7 @@ const axios = require("axios");
 
 export const GetGuilds = (token, callback) => {
   axios
-    .get("/guilds", {
+    .get("/api/guilds", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -22,7 +22,7 @@ export const GetGuilds = (token, callback) => {
 
 export const GetGuild = (token, guildId, callback) => {
   axios
-    .get(`/guilds/${guildId}`, {
+    .get(`/api/guilds/${guildId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -41,7 +41,7 @@ export const GetGuild = (token, guildId, callback) => {
 
 export const GetAutoRoles = (token, guildId, callback) => {
   axios
-    .get(`/guilds/${guildId}/autoroles`, {
+    .get(`/api/guilds/${guildId}/autoroles`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -60,7 +60,7 @@ export const GetAutoRoles = (token, guildId, callback) => {
 
 export const GetRoles = (token, guildId, callback) => {
   axios
-    .get(`/guilds/${guildId}/roles`, {
+    .get(`/api/guilds/${guildId}/roles`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -79,7 +79,7 @@ export const GetRoles = (token, guildId, callback) => {
 
 export const GetMembers = (token, guildId, callback) => {
   axios
-    .get(`/guilds/${guildId}/members`, {
+    .get(`/api/guilds/${guildId}/members`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -98,7 +98,7 @@ export const GetMembers = (token, guildId, callback) => {
 
 export const GetEnabledCommands = (token, guildId, callback) => {
   axios
-    .get(`/guilds/${guildId}/enabled-commands`, {
+    .get(`/api/guilds/${guildId}/enabled-commands`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -117,7 +117,7 @@ export const GetEnabledCommands = (token, guildId, callback) => {
 
 export const GetCommands = (token, guildId, callback) => {
   axios
-    .get(`/guilds/${guildId}/commands`, {
+    .get(`/api/guilds/${guildId}/commands`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -136,7 +136,7 @@ export const GetCommands = (token, guildId, callback) => {
 
 export const GetChannels = (token, guildId, callback) => {
   axios
-    .get(`/guilds/${guildId}/channels`, {
+    .get(`/api/guilds/${guildId}/channels`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -155,7 +155,7 @@ export const GetChannels = (token, guildId, callback) => {
 
 export const GetEmojis = (token, guildId, callback) => {
   axios
-    .get(`/guilds/${guildId}/emojis`, {
+    .get(`/api/guilds/${guildId}/emojis`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -175,7 +175,7 @@ export const GetEmojis = (token, guildId, callback) => {
 
 export const UpdateGuildInfo = (token, guildId, guild, callback) => {
   axios
-    .patch(`/guilds/${guildId}`, guild, {
+    .patch(`/api/guilds/${guildId}`, guild, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -190,7 +190,7 @@ export const UpdateGuildInfo = (token, guildId, guild, callback) => {
 
 export const UpdateChannel = (token, guildId, channel, callback) => {
   axios
-    .patch(`/guilds/${guildId}/channels/${channel.id}`, channel, {
+    .patch(`/api/guilds/${guildId}/channels/${channel.id}`, channel, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -205,7 +205,7 @@ export const UpdateChannel = (token, guildId, channel, callback) => {
 
 export const UpdateCommands = (token, guildId, command, callback) => {
   axios
-    .patch(`/guilds/${guildId}/commands`, [command], {
+    .patch(`/api/guilds/${guildId}/commands`, [command], {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -221,7 +221,7 @@ export const UpdateCommands = (token, guildId, command, callback) => {
 export const CreateAutorole = (token, guildId, role, callback) => {
   role.guild_id = guildId;
   axios
-    .put(`/guilds/${guildId}/autoroles/${role.role_id}`, role, {
+    .put(`/api/guilds/${guildId}/autoroles/${role.role_id}`, role, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -237,7 +237,7 @@ export const CreateAutorole = (token, guildId, role, callback) => {
 export const UpdateAutorole = (token, guildId, role, callback) => {
   role.guild_id = guildId;
   axios
-    .patch(`/guilds/${guildId}/autoroles/${role.role_id}`, role, {
+    .patch(`/api/guilds/${guildId}/autoroles/${role.role_id}`, role, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
