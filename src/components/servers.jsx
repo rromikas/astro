@@ -24,7 +24,7 @@ const Servers = (props) => {
 
   return (
     <div className="w-100 h-100 d-flex justify-content-center align-items-center p-4">
-      {props.user.username === "" && false ? (
+      {props.user.username === "" ? (
         <div className="lead">Login to view your servers</div>
       ) : (
         <div
