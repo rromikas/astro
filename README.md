@@ -1,8 +1,7 @@
-**
 
 ## Programos paleidimas
 
-**
+
 
 **1. git clone https://github.com/rromikas/astro.git**
 
