@@ -1,6 +1,7 @@
 import React from "react";
-import { levels } from "../../../data/data";
 const Level = ({ level, exp }) => {
+  const thisLvlExp = 5 * Math.pow(level + 1, 2) + 50 * (level + 1) + 100;
+
   return (
     <div
       style={{
@@ -35,7 +36,8 @@ const Level = ({ level, exp }) => {
           r="90"
           stroke="white"
           transform="rotate(-90, 95, 95)"
-          strokeDasharray={`${(exp / levels[level + 1]) * 531}px`}
+          strokeDashoffset={550 - (exp / thisLvlExp) * 550}
+          strokeDasharray="550"
         />
       </svg>
     </div>

@@ -55,12 +55,14 @@ const Scoreboard = ({ users }) => {
                         width: "40px",
                         height: "40px",
                         marginRight: "10px",
+                        borderRadius: "50%",
+                        overflow: "hidden",
                       }}
                     >
                       <img
                         src={
                           x.avatar && x.avatar !== ""
-                            ? x.avatar
+                            ? `https://cdn.discordapp.com/avatars/${x.user_id}/${x.avatar}.png`
                             : "https://cdn0.iconfinder.com/data/icons/free-social-media-set/24/discord-512.png"
                         }
                         alt={x.avatar}
