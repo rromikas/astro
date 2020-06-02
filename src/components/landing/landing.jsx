@@ -9,6 +9,31 @@ import AutoRoles from "../dashboard/server/autoroles";
 import AutoMessages from "../dashboard/server/automessages";
 import Prefix from "../dashboard/server/prefix";
 import { uid } from "react-uid";
+import case1 from "./useCases/1.jpg";
+import case2 from "./useCases/2.jpg";
+import case3 from "./useCases/3.jpg";
+import case4 from "./useCases/4.jpg";
+import case6 from "./useCases/6.jpg";
+import case7 from "./useCases/7.jpg";
+import case8 from "./useCases/8.jpg";
+import case10 from "./useCases/10.jpg";
+import case11 from "./useCases/11.jpg";
+import case12 from "./useCases/12.jpg";
+import case13 from "./useCases/13.jpg";
+
+const useCaseImages = [
+  case7,
+  case8,
+  case10,
+  case13,
+  case11,
+  case12,
+  case1,
+  case2,
+  case3,
+  case4,
+  case6,
+];
 
 const webF = [
   <Commands
@@ -96,17 +121,31 @@ function sleep(time) {
 }
 
 const Landing = () => {
-  const [opacity, setOpacity] = useState(1);
+  const [webOpacity, setWebOpacity] = useState(1);
+  const [discordOpacity, setDiscordOpacity] = useState(1);
   const [webFeature, setWebFeature] = useState(0);
+  const [caseImage, setCaseImage] = useState(0);
   useEffect(() => {
     const slider = setTimeout(async () => {
-      setOpacity(0);
+      setWebOpacity(0);
       await sleep(1000);
       setWebFeature((webFeature + 1) % webF.length);
-      setOpacity(1);
+      await sleep(100);
+      setWebOpacity(1);
     }, 5000);
     return () => clearTimeout(slider);
   }, [webFeature]);
+
+  useEffect(() => {
+    const slider = setTimeout(async () => {
+      setDiscordOpacity(0);
+      await sleep(1000);
+      setCaseImage((caseImage + 1) % useCaseImages.length);
+      await sleep(300);
+      setDiscordOpacity(1);
+    }, 5000);
+    return () => clearTimeout(slider);
+  }, [caseImage]);
   return (
     <div
       className="px-4 container-fluid"
@@ -127,7 +166,7 @@ const Landing = () => {
       <div className="row no-gutters pb-3">
         <div className="col-12 mb-3">
           <div className="row no-gutters">
-            <div className="col-md-6 col-lg-8 col-12 pr-3">
+            <div className="col-md-6 col-lg-6 col-12 pr-3 mt-3">
               <div className="row no-gutters">
                 <div
                   className="col-auto py-2 m-2 lead"
@@ -150,16 +189,19 @@ const Landing = () => {
                 })}
               </div>
             </div>
-            <div className="col-md-6 col-lg-4 col-12 d-flex align-items-center mt-4 mt-md-0">
+            <div
+              className="col-md-6 col-lg-6 col-12 d-flex align-items-center mt-4 mt-md-0"
+              style={{ height: "355px" }}
+            >
               <div
-                className="w-100 p-3 concave-2 d-flex justify-content-center"
-                style={{ borderRadius: "50px" }}
+                className="w-100 p-3 d-flex justify-content-center"
+                style={{ borderRadius: "15px" }}
               >
                 <img
-                  src={sample}
+                  src={useCaseImages[caseImage]}
                   style={{
-                    borderRadius: "50px",
-                    opacity: opacity,
+                    borderRadius: "15px",
+                    opacity: discordOpacity,
                     transition: "opacity 1s",
                   }}
                   className="img-fluid"
@@ -170,7 +212,7 @@ const Landing = () => {
         </div>
         <div className="col-12">
           <div className="row no-gutters">
-            <div className="col-md-6 col-lg-8 col-12 pr-3">
+            <div className="col-md-6 col-lg-6 col-12 pr-3">
               <div className="row no-gutters">
                 <div
                   className="col-auto py-2 m-2 lead"
@@ -193,9 +235,9 @@ const Landing = () => {
                 })}
               </div>
             </div>
-            <div className="col-md-6 col-lg-4 col-12 d-flex align-items-center mt-4 mt-md-0">
+            <div className="col-md-6 col-lg-6 col-12 d-flex align-items-center mt-4 mt-md-0">
               <div
-                className="px-4 py-3 concave-2"
+                className="px-4 py-3 convex-2"
                 style={{
                   borderRadius: "50px",
                   height: "300px",
@@ -205,7 +247,7 @@ const Landing = () => {
                 <div
                   style={{
                     transition: "opacity 1s",
-                    opacity: opacity,
+                    opacity: webOpacity,
                     width: "100%",
                     height: "100%",
                     display: "flex",
