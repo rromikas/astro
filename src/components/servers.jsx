@@ -24,7 +24,7 @@ const Servers = (props) => {
 
   return (
     <div className="w-100 h-100 d-flex justify-content-center align-items-center p-4">
-      {props.user.username === "" ? (
+      {props.user.username === "" && process.env.NODE_ENV === "production" ? (
         <div className="lead">Login to view your servers</div>
       ) : (
         <div

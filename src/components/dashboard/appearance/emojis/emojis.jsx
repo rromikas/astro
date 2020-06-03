@@ -20,7 +20,7 @@ const Emojis = ({ createEmoji, deleteEmoji, emojis, setEmojis }) => {
             return (
               <div
                 key={uid(x)}
-                className="col-auto p-1"
+                className="col-auto p-1 text-center"
                 style={{ position: "relative" }}
                 onMouseOver={() => {
                   setHover(i);
@@ -45,6 +45,7 @@ const Emojis = ({ createEmoji, deleteEmoji, emojis, setEmojis }) => {
                       borderRadius: "25px",
                       backgroundImage: `url(https://cdn.discordapp.com/emojis/${x.id})`,
                       backgroundSize: "cover",
+                      minWidth:"50px"
                     }}
                   ></div>
                 )}
