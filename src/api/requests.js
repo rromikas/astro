@@ -180,7 +180,9 @@ export const UpdateGuildInfo = (token, guildId, guild, callback) => {
         Authorization: `Bearer ${token}`,
       },
     })
-    .then((response) => {})
+    .then((response) => {
+      callback(response);
+    })
     .catch(function (error) {
       callback({ error: "can't update info", fullError: error });
     });
@@ -193,7 +195,9 @@ export const UpdateChannel = (token, guildId, channel, callback) => {
         Authorization: `Bearer ${token}`,
       },
     })
-    .then((response) => {})
+    .then((response) => {
+      callback(response);
+    })
     .catch(function (error) {
       callback({ error: "can't update info", fullError: error });
     });
@@ -206,7 +210,9 @@ export const UpdateCommands = (token, guildId, command, callback) => {
         Authorization: `Bearer ${token}`,
       },
     })
-    .then((response) => {})
+    .then((response) => {
+      callback(response);
+    })
     .catch(function (error) {
       callback({ error: "can't update info", fullError: error });
     });

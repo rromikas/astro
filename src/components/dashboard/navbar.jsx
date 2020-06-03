@@ -18,7 +18,7 @@ const Navbar = ({ setMain, main, server, loadedContent }) => {
             }}
           >
             <div style={{ display: "flex", alignItems: "center" }}>
-              {loadedContent < 6 && !server.error ? (
+              {(loadedContent < 6 && !server.error) || server.loading ? (
                 <MoonLoader
                   size={20}
                   color={"white"}
