@@ -63,15 +63,15 @@ const CommandsTable = () => {
         className="p-3 p-sm-4 p-md-5 convex-1"
         style={{ borderRadius: "40px", maxWidth: "1000px" }}
       >
-        <div className="lead text-center mb-3 mx-auto">Commands Table</div>
+        <div className="lead text-center mb-4 mx-auto">Commands Table</div>
         <div className="table-responsive">
           <table className="table-striped w-100">
             <tbody>
               {commands.map((x) => {
                 return (
                   <tr>
-                    <td className="py-2 text-center">{x.name}</td>
-                    <td className="py-2 text-center">{x.description}</td>
+                    <td className="py-3 text-center">{x.name}</td>
+                    <td className="py-3 text-center">{x.description}</td>
                   </tr>
                 );
               })}
