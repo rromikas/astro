@@ -279,3 +279,18 @@ export const DeleteEmoji = (token, guildId, emoji, callback) => {
       callback({ error: "can't update info", fullError: error });
     });
 };
+
+export const DeleteRole = (token, guildId, role, callback) => {
+  axios
+    .delete(`${prefix}/guilds/${guildId}/autoroles/${role.role_id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => {
+      callback(response);
+    })
+    .catch(function (error) {
+      callback({ error: "can't update info", fullError: error });
+    });
+};

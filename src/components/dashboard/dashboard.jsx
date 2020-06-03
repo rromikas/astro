@@ -164,6 +164,12 @@ const Dashboard = (props) => {
               setServer((s) => Object.assign({}, s, { loading: false }));
             });
           }}
+          deleteRole={(role) => {
+            setServer((s) => Object.assign({}, s, { loading: true }));
+            Api.DeleteRole(token, serverId, role, (res) => {
+              setServer((s) => Object.assign({}, s, { loading: false }));
+            });
+          }}
           updateChannel={(updatedChannel) => {
             setChannels((chnls) => {
               let arr = [...chnls];

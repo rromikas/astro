@@ -19,6 +19,7 @@ const Server = ({
   createRole,
   updateRole,
   updateMessages,
+  deleteRole,
 }) => {
   return (
     <div className="container-fluid px-0">
@@ -60,6 +61,7 @@ const Server = ({
         >
           <div className="pnl convex-1 shn">
             <AutoRoles
+              deleteRole={deleteRole}
               rolesData={roles}
               createRole={createRole}
               updateRole={updateRole}

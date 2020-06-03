@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { getLongestWidth } from "../utilities/events";
 import AutosizeInput from "react-input-autosize";
 import { uid } from "react-uid";
-const AutoRoles = ({ rolesData, createRole, updateRole }) => {
+const AutoRoles = ({ rolesData, createRole, updateRole, deleteRole }) => {
   const [roles, setRoles] = useState({
     autoroles: [],
     roles: [],
@@ -110,6 +110,7 @@ const AutoRoles = ({ rolesData, createRole, updateRole }) => {
       {editRoles.type !== "wait" && (
         <div
           onClick={() => {
+            deleteRole(roles.autoroles[editRoles.id]);
             setRoles((rls) => {
               let arr = [...rls.autoroles];
               arr.splice(editRoles.id, 1);
