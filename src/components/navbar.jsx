@@ -37,7 +37,9 @@ const Navbar = (props) => {
               </div>
             </div>
             <div className={menuClass}>
-              <div className="pln">Commands</div>
+              <div className="pln" onClick={() => history.push("/commands")}>
+                Commands
+              </div>
             </div>
             <div className={menuClass}>
               <div

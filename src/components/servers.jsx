@@ -35,7 +35,7 @@ const Servers = (props) => {
             Your servers
           </div>
           <div className="row">
-            <div className="col-12 col-md-7 mx-auto">
+            <div className="col-12 col-md-7 mx-auto table-responsive">
               <table className="table table-striped borderless mx-auto">
                 <tbody>
                   {servers.map((x) => {

@@ -9,6 +9,7 @@ import store from "./store/store";
 import Dashboard from "./components/dashboard/dashboard";
 import Landing from "./components/landing/landing";
 import Servers from "./components/servers";
+import CommandsTable from "./components/commandsTable";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route exact path="/" component={Landing}></Route>
           <Route exact path="/auth" component={Auth} />
           <Route exact path="/servers" component={Servers}></Route>
+          <Route exact path="/commands" component={CommandsTable}></Route>
         </Switch>
       </Router>
     </Provider>
