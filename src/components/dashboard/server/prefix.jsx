@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaPen, FaCheck } from "react-icons/fa";
-const Prefix = ({ setPrefix, prefix, savePrefix }) => {
+const Prefix = ({ savePrefix, prefix, setPrefix }) => {
   const [edit, setEdit] = useState(false);
   return (
     <div className="row no-gutters h-100" style={{ maxWidth: "270px" }}>
@@ -29,7 +29,6 @@ const Prefix = ({ setPrefix, prefix, savePrefix }) => {
             fontSize="20px"
             onClick={() => {
               setEdit(false);
-              savePrefix();
             }}
             style={{
               position: "absolute",

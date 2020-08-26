@@ -1,7 +1,9 @@
 import React from "react";
 import Scoreboard from "./scoreboard";
 import Chart from "../../charts/chart";
-const Stats = ({ users, commands, emojis }) => {
+import { emojis, commands } from "../../../data/data";
+
+const Stats = ({ users }) => {
   return (
     <div className="row no-gutters">
       <div

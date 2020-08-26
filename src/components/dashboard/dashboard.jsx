@@ -6,6 +6,7 @@ import Stats from "./stats/stats";
 import Appearance from "./appearance/appearance";
 import * as Api from "../../api/requests";
 import { connect } from "react-redux";
+import { users } from "../../data/data";
 
 const Dashboard = (props) => {
   const token =
@@ -18,9 +19,9 @@ const Dashboard = (props) => {
   const [server, setServer] = useState({
     id: serverId ? serverId : "0000",
     name: "",
-    prefix: "",
-    greeting: "",
-    farewell: "",
+    prefix: "!",
+    greeting: "Welcome to astro channel",
+    farewell: "Goodbye",
   });
   const [loadedContent, setLoadedContent] = useState(0);
   const [channels, setChannels] = useState([]);
@@ -29,90 +30,89 @@ const Dashboard = (props) => {
     roles: [],
     autoroles: [],
   });
-  const [users, setUsers] = useState([]);
   const [stats, setStats] = useState({
     emojis: [],
     commands: [],
     users: [],
   });
 
-  useEffect(() => {
-    if (token) {
-      Api.GetGuild(token, serverId, (res) => {
-        res.farewell = res.farewell ? res.farewell : "";
-        res.greeting = res.greeting ? res.greeting : "";
-        setServer((s) => Object.assign({}, s, res));
-        setLoadedContent((lc) => lc + 1);
-      });
+  // useEffect(() => {
+  //   if (token) {
+  //     Api.GetGuild(token, serverId, (res) => {
+  //       res.farewell = res.farewell ? res.farewell : "";
+  //       res.greeting = res.greeting ? res.greeting : "";
+  //       setServer((s) => Object.assign({}, s, res));
+  //       setLoadedContent((lc) => lc + 1);
+  //     });
 
-      Api.GetAutoRoles(token, serverId, (res) => {
-        Api.GetRoles(token, serverId, (res1) => {
-          if (res1.error) {
-            setServer((s) =>
-              Object.assign({}, s, {
-                error: res.error ? res.error : res1.error,
-              })
-            );
-          } else {
-            setRoles({ roles: res1, autoroles: res.error ? [] : res });
-          }
-          setLoadedContent((lc) => lc + 1);
-        });
-      });
+  //     Api.GetAutoRoles(token, serverId, (res) => {
+  //       Api.GetRoles(token, serverId, (res1) => {
+  //         if (res1.error) {
+  //           setServer((s) =>
+  //             Object.assign({}, s, {
+  //               error: res.error ? res.error : res1.error,
+  //             })
+  //           );
+  //         } else {
+  //           setRoles({ roles: res1, autoroles: res.error ? [] : res });
+  //         }
+  //         setLoadedContent((lc) => lc + 1);
+  //       });
+  //     });
 
-      Api.GetChannels(token, serverId, (res) => {
-        if (res.error) {
-          setServer((s) => Object.assign({}, s, { error: res.error }));
-        } else {
-          setChannels(res);
-        }
-        setLoadedContent((lc) => lc + 1);
-      });
+  //     Api.GetChannels(token, serverId, (res) => {
+  //       if (res.error) {
+  //         setServer((s) => Object.assign({}, s, { error: res.error }));
+  //       } else {
+  //         setChannels(res);
+  //       }
+  //       setLoadedContent((lc) => lc + 1);
+  //     });
 
-      Api.GetCommands(token, serverId, (res) => {
-        if (res.error) {
-          setServer((s) => Object.assign({}, s, { error: res.error }));
-        } else {
-          setCommands(res);
-        }
-        setLoadedContent((lc) => lc + 1);
-      });
+  //     Api.GetCommands(token, serverId, (res) => {
+  //       if (res.error) {
+  //         setServer((s) => Object.assign({}, s, { error: res.error }));
+  //       } else {
+  //         setCommands(res);
+  //       }
+  //       setLoadedContent((lc) => lc + 1);
+  //     });
 
-      Api.GetMembers(token, serverId, (res) => {
-        if (res.error) {
-          setServer((s) => Object.assign({}, s, { error: res.error }));
-        } else {
-          setUsers(res);
-        }
-        setLoadedContent((lc) => lc + 1);
-      });
+  //     Api.GetMembers(token, serverId, (res) => {
+  //       if (res.error) {
+  //         setServer((s) => Object.assign({}, s, { error: res.error }));
+  //       } else {
+  //         setUsers(res);
+  //       }
+  //       setLoadedContent((lc) => lc + 1);
+  //     });
 
-      Api.GetEmojis(token, serverId, (res) => {
-        let emojis = [],
-          cmds = [];
-        Api.GetCommands(token, serverId, (res1) => {
-          cmds = res1;
-          emojis = res !== "" ? res : [];
-          if (res.error || res1.error) {
-            setServer((s) =>
-              Object.assign({}, s, {
-                error: res.error ? res.error : res1.error,
-              })
-            );
-          } else {
-            setStats((st) =>
-              Object.assign({}, st, { emojis: emojis, commands: cmds })
-            );
-          }
-          setLoadedContent((lc) => lc + 1);
-        });
-      });
-    } else {
-      setServer((s) =>
-        Object.assign({}, s, { loading: false, error: "You need to login" })
-      );
-    }
-  }, []);
+  //     Api.GetEmojis(token, serverId, (res) => {
+  //       let emojis = [],
+  //         cmds = [];
+  //       Api.GetCommands(token, serverId, (res1) => {
+  //         cmds = res1;
+  //         emojis = res !== "" ? res : [];
+  //         if (res.error || res1.error) {
+  //           setServer((s) =>
+  //             Object.assign({}, s, {
+  //               error: res.error ? res.error : res1.error,
+  //             })
+  //           );
+  //         } else {
+  //           setStats((st) =>
+  //             Object.assign({}, st, { emojis: emojis, commands: cmds })
+  //           );
+  //         }
+  //         setLoadedContent((lc) => lc + 1);
+  //       });
+  //     });
+  //   } else {
+  //     setServer((s) =>
+  //       Object.assign({}, s, { loading: false, error: "You need to login" })
+  //     );
+  //   }
+  // }, []);
 
   return (
     <div

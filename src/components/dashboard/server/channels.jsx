@@ -9,8 +9,9 @@ import {
   handleTouchMove,
   handleTouchEnd,
 } from "../utilities/events";
+import { channels } from "../../../data/data";
 
-const Channels = ({ preview = false, channels, updateChannel }) => {
+const Channels = ({ preview = false, updateChannel }) => {
   const [move, setMove] = useState([0, 0]);
   const scrollbar = useRef(null);
   useEffect(() => {
@@ -22,7 +23,7 @@ const Channels = ({ preview = false, channels, updateChannel }) => {
         !preview ? " convex-1" : ""
       } row px-4 py-2 pt-4 no-gutters justify-content-between shn h-100 channels`}
     >
-      <div className="col-12 lead text-center">Channels</div>
+      <div className="col-12 lead text-center">Channels as</div>
       <PerfectScrollbar
         ref={scrollbar}
         options={{

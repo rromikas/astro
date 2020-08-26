@@ -17,11 +17,12 @@ export let levels = {
 };
 
 export let channels = [
-  { name: "Voice", enabled: false },
-  { name: "General", enabled: true },
-  { name: "Music", enabled: true },
-  { name: "Memes", enabled: false },
-  { name: "Commands", enabled: true },
+  { name: "Voice", ignore: false },
+  { name: "General", ignore: true },
+  { name: "Music", ignore: false },
+  { name: "Memes", ignore: false },
+  { name: "Movies", ignore: true },
+  { name: "Jokes", ignore: false },
 ];
 
 export let users = [

@@ -7,8 +7,17 @@ import AutosizeInput from "react-input-autosize";
 import { uid } from "react-uid";
 const AutoRoles = ({ rolesData, createRole, updateRole, deleteRole }) => {
   const [roles, setRoles] = useState({
-    autoroles: [],
-    roles: [],
+    autoroles: [
+      { min_lvl: 1, role_id: 2 },
+      { min_lvl: 10, role_id: 1 },
+      { min_lvl: 5, role_id: 3 },
+    ],
+    roles: [
+      { id: -1, name: "select" },
+      { id: 1, name: "admin" },
+      { id: 2, name: "member" },
+      { id: 3, name: "fan" },
+    ],
   });
 
   const [editRoles, setEditRoles] = useState({
@@ -19,13 +28,6 @@ const AutoRoles = ({ rolesData, createRole, updateRole, deleteRole }) => {
   });
 
   const [longCols, setLongCols] = useState([0, 0]);
-  useEffect(() => {
-    rolesData.roles.push({ id: -1, name: "select" });
-    setRoles(rolesData);
-    let eventsLength = getLongestWidth(["Level X"]);
-    let rolesLength = getLongestWidth([...roles.roles.map((x) => x.name)]);
-    setLongCols([eventsLength, rolesLength]);
-  }, [rolesData]);
 
   return (
     <div className="w-100 py-4 px-4" style={{ position: "relative" }}>

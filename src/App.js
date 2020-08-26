@@ -22,7 +22,7 @@ function App() {
             path="/servers/:serverId/dashboard"
             component={Dashboard}
           ></Route>
-          <Route exact path="/" component={Landing}></Route>
+          <Route exact path="/" component={Dashboard}></Route>
           <Route exact path="/auth" component={Auth} />
           <Route exact path="/servers" component={Servers}></Route>
           <Route exact path="/commands" component={CommandsTable}></Route>

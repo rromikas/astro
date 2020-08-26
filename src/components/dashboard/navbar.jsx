@@ -18,23 +18,23 @@ const Navbar = ({ setMain, main, server, loadedContent }) => {
             }}
           >
             <div style={{ display: "flex", alignItems: "center" }}>
-              {(loadedContent < 6 && !server.error) || server.loading ? (
+              {/* {(loadedContent < 6 && !server.error) || server.loading ? (
                 <MoonLoader
                   size={20}
                   color={"white"}
                   loading={server.loading}
                 />
-              ) : (
-                <div
-                  className={`${server.error ? "dsbl" : "enbl"}-btn mr-2`}
-                  style={{
-                    width: "15px",
-                    height: "15px",
-                    marginRight: "10px",
-                    borderRadius: "50%",
-                  }}
-                ></div>
-              )}
+              ) : ( */}
+              <div
+                className={`${server.error ? "dsbl" : "enbl"}-btn mr-2`}
+                style={{
+                  width: "15px",
+                  height: "15px",
+                  marginRight: "10px",
+                  borderRadius: "50%",
+                }}
+              ></div>
+              {/* )} */}
               {server.error ? server.error : server.name}
             </div>
             <div>Dashboard</div>
