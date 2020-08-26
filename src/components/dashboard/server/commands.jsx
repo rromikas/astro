@@ -9,9 +9,22 @@ import {
   handleTouchMove,
   handleTouchEnd,
 } from "../utilities/events";
-import { commands } from "../../../data/data";
 
 const Commands = ({ prefix, preview = false, updateCommand }) => {
+  const [commands, setCommands] = useState([
+    { name: "warn", uses: 8, enabled: true },
+    { name: "role", uses: 2, enabled: true },
+    { name: "mute", uses: 5, enabled: false },
+    { name: "kick", uses: 18, enabled: true },
+    { name: "play", uses: 25, enabled: false },
+    { name: "user-info", uses: 18, enabled: true },
+    { name: "unmute", uses: 18, enabled: true },
+    { name: "ban", uses: 18, enabled: false },
+    { name: "unban", uses: 18, enabled: true },
+    { name: "tempmute", uses: 18, enabled: false },
+    { name: "role-info", uses: 18, enabled: true },
+    { name: "emoji", uses: 18, enabled: true },
+  ]);
   const [move, setMove] = useState([0, 0]);
   const scrollbar = useRef(null);
   useEffect(() => {
@@ -54,10 +67,11 @@ const Commands = ({ prefix, preview = false, updateCommand }) => {
                         onMouseDown={(e) => onMD(e, x.name)}
                         onMouseUp={(e) =>
                           onMU(e, x.name, setMove, (enabled) => {
-                            let updatedCommand = Object.assign({}, x, {
-                              enabled: enabled,
+                            setCommands((prev) => {
+                              let arr = [...prev];
+                              arr[i].enabled = enabled;
+                              return arr;
                             });
-                            updateCommand(updatedCommand);
                           })
                         }
                         onMouseMove={(e) => onMM(e, x.name, setMove)}
